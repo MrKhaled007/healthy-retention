@@ -89,3 +89,30 @@ models:
           - accepted_values:
               arguments:
                 values: ['new', 'existing']
+
+  - name: fct_player_month
+    description: "One row per player per month, from cohort month to Feb 2020, including inactive months."
+    columns:
+      - name: player_month_id
+        description: "Primary key. Player + month (YYYY-MM)."
+        tests:
+          - unique
+          - not_null
+      - name: player_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_player')
+                field: player_id
+      - name: month_pacific
+        tests:
+          - not_null
+      - name: months_since_first_seen
+        description: "0 = cohort month, 1 = next month, and so on."
+        tests:
+          - not_null
+      - name: is_active
+        description: "True if at least one approved deposit into gambling that month (decision 13)."
+        tests:
+          - not_null

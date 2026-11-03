@@ -78,6 +78,10 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20; − 2,024 rows on 1 Mar 2020 (Pacific) = 445,812 rows.
 
+\- fct\_player\_month reconciles with fct\_transactions: 284,058 approved deposits into gambling,
+
+&#x20; $25,914,871.19 in both tables.
+
 
 
 \### Decisions
@@ -115,6 +119,10 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 &#x20;   and identical rows in the same second are most likely double-logged. Impact is under
 
 &#x20;   0.1% of approved deposits. Counts removed are shown on the Data Quality page.
+
+13\. A player is "active" in a month if they made at least one approved deposit into
+
+&#x20;   gambling (deposit\_to\_gambling, APPROVED) in that month (Pacific time).
 
 
 
