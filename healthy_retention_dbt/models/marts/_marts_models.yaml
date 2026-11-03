@@ -1,0 +1,91 @@
+version: 2
+
+models:
+  - name: fct_transactions
+    description: "One row per transaction, both brands. Built from the two staging models."
+    columns:
+      - name: transaction_id
+        description: "Brand + staging hash. Unique across both brands."
+        tests:
+          - unique
+          - not_null
+      - name: player_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_player')
+                field: player_id
+      - name: brand
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_brand')
+                field: brand
+      - name: date_pacific
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_pacific
+      - name: month_pacific
+        tests:
+          - not_null
+      - name: transaction_category
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['wallet_funding_card', 'wallet_funding_ach', 'deposit_to_gambling', 'withdrawal_from_gambling']
+      - name: approved_amount_usd
+        description: "Amount if approved, 0 if declined."
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: "Calendar: one row per day, 1 Mar 2019 – 29 Feb 2020 (Pacific)."
+    columns:
+      - name: date_pacific
+        description: "Primary key."
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_brand
+    description: "Brand dimension: one row per brand."
+    columns:
+      - name: brand
+        description: "Primary key."
+        tests:
+          - unique
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['casino', 'sports']
+
+  - name: dim_player
+    description: "Player dimension: one row per player, with journey milestones. Empty dates mean the step was never reached."
+    columns:
+      - name: player_id
+        description: "Primary key. Brand + AccountIdentifier."
+        tests:
+          - unique
+          - not_null
+      - name: brand
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_brand')
+                field: brand
+      - name: first_seen_date
+        tests:
+          - not_null
+      - name: player_type
+        description: "new = first seen on or after 1 May 2019; existing = first seen in March–April 2019."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['new', 'existing']
