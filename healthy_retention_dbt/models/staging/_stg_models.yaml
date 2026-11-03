@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: stg_casino_transactions
+    description: "Casino transactions: deduplicated, typed, unknown statuses removed, 1 Mar 2019 – 29 Feb 2020 (Pacific)."
+    columns:
+      - name: transaction_id
+        description: "Hash of the five original columns. Unique after deduplication."
+        tests:
+          - unique
+          - not_null
+      - name: brand
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['casino']
+      - name: player_id
+        description: "Brand + AccountIdentifier, e.g. casino_customer189."
+        tests:
+          - not_null
+      - name: ts_utc
+        tests:
+          - not_null
+      - name: transaction_category
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['wallet_funding_card', 'deposit_to_gambling', 'withdrawal_from_gambling']
+      - name: amount_usd
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['APPROVED', 'DECLINED']
+      - name: date_pacific
+        tests:
+          - not_null
+
+  - name: stg_sports_transactions
+    description: "Sports transactions: deduplicated, typed, unknown statuses removed, 1 Mar 2019 – 29 Feb 2020 (Pacific)."
+    columns:
+      - name: transaction_id
+        description: "Hash of the five original columns. Unique after deduplication."
+        tests:
+          - unique
+          - not_null
+      - name: brand
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['sports']
+      - name: player_id
+        description: "Brand + AccountIdentifier, e.g. sports_customer189."
+        tests:
+          - not_null
+      - name: ts_utc
+        tests:
+          - not_null
+      - name: transaction_category
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['wallet_funding_card', 'wallet_funding_ach', 'deposit_to_gambling', 'withdrawal_from_gambling']
+      - name: amount_usd
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['APPROVED', 'DECLINED']
+      - name: date_pacific
+        tests:
+          - not_null

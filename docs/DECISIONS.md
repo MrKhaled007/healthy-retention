@@ -70,6 +70,14 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20; sports duplicates are mostly DECLINED deposits into gambling (10).
 
+\- Casino staging reconciliation: 138,928 raw − 72 duplicates − 452 rows on 1 Mar 2020 (Pacific)
+
+&#x20; = 138,404 rows.
+
+\- Sports staging reconciliation: 447,853 raw − 16 duplicates − 1 "NA" row (after deduplication)
+
+&#x20; − 2,024 rows on 1 Mar 2020 (Pacific) = 445,812 rows.
+
 
 
 \### Decisions
