@@ -58,6 +58,18 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20; customers with at least one approved deposit into gambling, up to 29 Feb 2020 (Pacific).
 
+\- Sports has 6 rows with status "NA": identical rows (customer1191, 2020-01-09 10:28:59 UTC,
+
+&#x20; card funding, $103). pandas hid them because it reads "NA" as missing; a dbt test caught them.
+
+\- Exact duplicate rows (all five columns identical): casino 63 groups / 72 extra rows,
+
+&#x20; sports 12 groups / 16 extra rows (5 of them are the "NA" rows).
+
+&#x20; Casino duplicates are mostly APPROVED deposits into gambling (49) and withdrawals (12);
+
+&#x20; sports duplicates are mostly DECLINED deposits into gambling (10).
+
 
 
 \### Decisions
@@ -86,6 +98,16 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 10\. Time-of-day markers use each brand's local time (casino: US Eastern, sports: US Pacific).
 
+11\. The 6 sports rows with status "NA" are excluded in staging and reported on the Data Quality page.
+
+&#x20;   The raw-layer status test is set to warn, not fail, for this known issue.
+
+12\. Exact duplicate rows are reduced to one copy in staging. There is no transaction ID,
+
+&#x20;   and identical rows in the same second are most likely double-logged. Impact is under
+
+&#x20;   0.1% of approved deposits. Counts removed are shown on the Data Quality page.
+
 
 
 \### Open questions
@@ -95,4 +117,8 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 \- Are the repeated withdrawals just under $10,000 caused by a per-transaction limit?
 
 \- Why are some deposits into gambling declined? (insufficient wallet balance?)
+
+\- Are the exact duplicates double logging or genuine repeated transactions? A transaction ID
+
+&#x20; would settle it.
 

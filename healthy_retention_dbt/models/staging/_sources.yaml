@@ -1,0 +1,59 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Payment transactions as delivered by Ghaharian et al. (2023), CC BY 4.0. All columns stored as text."
+    schema: raw
+    tables:
+      - name: casino_transactions
+        description: "Casino-focused brand, US East Coast. One row per transaction."
+        columns:
+          - name: req_time_utc
+            tests:
+              - not_null
+          - name: transaction_type
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['LOYALTYCARDCREDITCL', 'LOYALTYCARDDEBIT', 'LOYALTYCARDCREDIT']
+          - name: transaction_amount
+            tests:
+              - not_null
+          - name: status
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['APPROVED', 'DECLINED']
+          - name: account_identifier
+            tests:
+              - not_null
+
+      - name: sports_transactions
+        description: "Sports-focused brand, US West Coast. One row per transaction."
+        columns:
+          - name: req_time_utc
+            tests:
+              - not_null
+          - name: transaction_type
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['LOYALTYCARDCREDITCL', 'LOYALTYCARDCREDITACH', 'LOYALTYCARDDEBIT', 'LOYALTYCARDCREDIT']
+          - name: transaction_amount
+            tests:
+              - not_null
+          - name: status
+            description: "Known issue: 6 rows have status 'NA' (see DECISIONS.md). Excluded in staging."
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['APPROVED', 'DECLINED']
+                  config:
+                    severity: warn
+          - name: account_identifier
+            tests:
+              - not_null
