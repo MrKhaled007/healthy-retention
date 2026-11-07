@@ -124,6 +124,10 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20;   gambling (deposit\_to\_gambling, APPROVED) in that month (Pacific time).
 
+14\. Funnel and retention analyses that look two months ahead use cohorts May–Dec 2019 only,
+
+&#x20;   so every player has at least two full months of follow-up.
+
 
 
 \### Open questions
