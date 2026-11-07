@@ -136,6 +136,12 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20;   instead of clustering because they are transparent and easy to explain.
 
+16\. Analysis 4 classifies players on their first 30 days after the first deposit only,
+
+&#x20;   not on their whole history. This avoids circular reasoning (players who stay longer
+
+&#x20;   naturally deposit more) and matches what an operator could act on in practice.
+
 
 
 \### Open questions
