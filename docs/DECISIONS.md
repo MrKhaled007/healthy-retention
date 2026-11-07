@@ -128,6 +128,14 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20;   so every player has at least two full months of follow-up.
 
+15\. Player segments are rule-based on approved deposits into gambling: one-and-done (1 deposit),
+
+&#x20;   then repeat depositors split by monthly deposit amount (median and 90th percentile).
+
+&#x20;   "High-intensity" (top 10%) is a spending proxy, not confirmed harm. Rules are used
+
+&#x20;   instead of clustering because they are transparent and easy to explain.
+
 
 
 \### Open questions
