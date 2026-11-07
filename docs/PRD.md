@@ -144,6 +144,9 @@ Each analysis follows: written hypothesis → SQL → result → confirmed or re
 
 Hypotheses are written before the query is run and are never edited afterwards.
 
+Note (7 Nov 2026): the casino-vs-sports retention comparison moved to Analysis 6.
+Analysis 2 on casino tests whether month-1 retention is stable across cohorts.
+
 
 
 | # | Question | Starting hypothesis |
