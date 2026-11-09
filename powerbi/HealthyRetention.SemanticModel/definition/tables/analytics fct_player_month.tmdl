@@ -1,0 +1,153 @@
+table 'analytics fct_player_month'
+	lineageTag: 1e97420f-75c3-40f6-af5a-09c4b269d6c9
+
+	column player_month_id
+		dataType: string
+		lineageTag: 65fbe5ce-f5ab-4817-a155-bec97d4c8035
+		summarizeBy: none
+		sourceColumn: player_month_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: string
+		lineageTag: c56a4da2-c978-4127-b8c3-268d366ab67a
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: ab224671-5412-4b57-9cce-8d64ddc0129e
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: df5bfc74-ff0f-4178-932e-102b257b7d9d
+		summarizeBy: none
+		sourceColumn: cohort_month
+
+		variation Variation
+			isDefault
+			relationship: 37686836-af51-45a3-b785-3dfb7cb82db2
+			defaultHierarchy: LocalDateTable_ee82623c-d010-4444-aa05-a148f620afa1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column month_pacific
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f0a23ee8-14be-42c6-80c4-d151f8e5f632
+		summarizeBy: none
+		sourceColumn: month_pacific
+
+		variation Variation
+			isDefault
+			relationship: 2f4e1dcf-6cba-4fc4-8c7c-0c7a54de45d1
+			defaultHierarchy: LocalDateTable_922a57d4-c6fd-4ecc-bcbe-b59df9951689.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column months_since_first_seen
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b02d773-4294-435a-82f5-f456086321e7
+		summarizeBy: sum
+		sourceColumn: months_since_first_seen
+
+		annotation SummarizationSetBy = Automatic
+
+	column deposits_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 98898076-c2cd-440d-b0ae-6c21e6ddb782
+		summarizeBy: sum
+		sourceColumn: deposits_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column deposits_amount_usd
+		dataType: double
+		lineageTag: dcd9001e-6192-41f0-bf23-d523a960a87a
+		summarizeBy: sum
+		sourceColumn: deposits_amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column deposit_days
+		dataType: int64
+		formatString: 0
+		lineageTag: bfe015be-57f6-4c5b-837c-b6b84e29859a
+		summarizeBy: sum
+		sourceColumn: deposit_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column withdrawals_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 5efae456-d961-4f06-abd8-2e7c7e7691ff
+		summarizeBy: sum
+		sourceColumn: withdrawals_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column withdrawals_amount_usd
+		dataType: double
+		lineageTag: 9927e546-a349-417e-b46d-7a9e2f8b61b8
+		summarizeBy: sum
+		sourceColumn: withdrawals_amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column funding_attempts
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b0db2d5-4b40-4386-80ef-1a3e01a9b428
+		summarizeBy: sum
+		sourceColumn: funding_attempts
+
+		annotation SummarizationSetBy = Automatic
+
+	column funding_declines
+		dataType: int64
+		formatString: 0
+		lineageTag: 3867c58a-7d71-429e-a808-5925cdf77a79
+		summarizeBy: sum
+		sourceColumn: funding_declines
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e82ce962-3096-47af-8dde-b76ed51a8af3
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'analytics fct_player_month' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "healthy_retention"),
+				    analytics_fct_player_month = Source{[Schema="analytics",Item="fct_player_month"]}[Data]
+				in
+				    analytics_fct_player_month
+
+	annotation PBI_ResultType = Table
+

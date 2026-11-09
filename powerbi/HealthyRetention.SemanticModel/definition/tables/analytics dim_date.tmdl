@@ -1,0 +1,131 @@
+table 'analytics dim_date'
+	lineageTag: 9f8f38a0-61e9-4e6a-bf13-9be67eaa678a
+
+	column date_pacific
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c51010c5-ed19-4618-a8e3-6a8a512d217d
+		summarizeBy: none
+		sourceColumn: date_pacific
+
+		variation Variation
+			isDefault
+			relationship: 4b71d082-f187-436f-bd46-e49ca13c1273
+			defaultHierarchy: LocalDateTable_cb9e7fd9-9424-4aa2-a44e-c757eb0cb5a5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column month_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 51322a02-a2fa-4f62-a864-ce3f675378a0
+		summarizeBy: none
+		sourceColumn: month_start
+
+		variation Variation
+			isDefault
+			relationship: 28aeeeab-bdf0-4bc2-b755-e3796a842f93
+			defaultHierarchy: LocalDateTable_2ea23a67-2599-4078-9521-c392c0f62495.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year_month
+		dataType: string
+		lineageTag: d7aa039c-acb1-4ea7-8e4a-d20a2c32bd0a
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_label
+		dataType: string
+		lineageTag: cdc40303-dfa4-4dbe-a1e2-e935a4eb5bd3
+		summarizeBy: none
+		sourceColumn: month_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 7926b026-5baf-4d7a-9330-d756aa109b39
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 661accef-2f10-479a-97e0-0553033a1d39
+		summarizeBy: sum
+		sourceColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 31da32a6-f302-40bd-9dd8-1e51d4947b7e
+		summarizeBy: sum
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bba3e0f7-bc9b-4b4d-91f6-365af8f73fdf
+		summarizeBy: none
+		sourceColumn: week_start
+
+		variation Variation
+			isDefault
+			relationship: efa468fb-fd97-4fb1-b2b6-efcf87324be3
+			defaultHierarchy: LocalDateTable_8871bc89-8622-4839-8f1d-f70178183c4a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: b54f597e-9b25-4ead-8481-ffbc7cb7e3c8
+		summarizeBy: sum
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: 0c8d3cd8-3c5c-42b4-aaed-821ff8da8b70
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9ee00345-3eb6-45aa-992d-3b0d8e707fa2
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'analytics dim_date' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "healthy_retention"),
+				    analytics_dim_date = Source{[Schema="analytics",Item="dim_date"]}[Data]
+				in
+				    analytics_dim_date
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "HealthyRetention"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e44d95e7-7da4-4696-917e-475802398222"
+  }
+}

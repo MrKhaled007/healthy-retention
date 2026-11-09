@@ -1,0 +1,165 @@
+table 'analytics fct_transactions'
+	lineageTag: a1d2bec8-3cb6-45d4-b114-46bf1fce06a3
+
+	column transaction_id
+		dataType: string
+		lineageTag: 4340f380-a36c-46bd-b237-79045148b0cd
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: string
+		lineageTag: 7219b12d-54f3-4e61-99aa-35fd00b6844e
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: 81749cd3-01b2-4a56-848c-bf0b282cb3c1
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_pacific
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 13a0aa40-6cfc-41ca-acc3-33d081431f90
+		summarizeBy: none
+		sourceColumn: date_pacific
+
+		variation Variation
+			isDefault
+			relationship: de6f62bf-e46b-4e7f-9221-0f3a28a341d3
+			defaultHierarchy: LocalDateTable_ce28bd6b-1527-4b31-bfc4-910b08902dc3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column month_pacific
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9234f689-dfa4-468c-8b59-42e83979f86a
+		summarizeBy: none
+		sourceColumn: month_pacific
+
+		variation Variation
+			isDefault
+			relationship: 3f1ef523-06d7-465c-874a-8abcf8b97c58
+			defaultHierarchy: LocalDateTable_7dd039f9-46c6-4d07-82fa-53c0c5c6912a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ts_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 48b6677a-be68-4f58-8b66-65d58808a15f
+		summarizeBy: none
+		sourceColumn: ts_utc
+
+		variation Variation
+			isDefault
+			relationship: 0206f21f-001e-4f02-b8c9-f3d41262d0b8
+			defaultHierarchy: LocalDateTable_d0b85b58-7589-4a47-a27f-1091d5c2aef9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts_pacific
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4af4fb79-e666-4fd2-9141-6fe37ce64446
+		summarizeBy: none
+		sourceColumn: ts_pacific
+
+		variation Variation
+			isDefault
+			relationship: 5183e91e-528e-427b-8964-cfd308ff9769
+			defaultHierarchy: LocalDateTable_11cb95a7-dd4a-44fc-8264-54376b0de263.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts_local
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 59fdd096-5a0d-4484-a0dc-0ae0cd1958d6
+		summarizeBy: none
+		sourceColumn: ts_local
+
+		variation Variation
+			isDefault
+			relationship: 46fb21aa-88d6-4df7-9f22-1f9af4930f0a
+			defaultHierarchy: LocalDateTable_029a1c77-9e50-47f0-9d2b-287703b3af8c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_type
+		dataType: string
+		lineageTag: a4b6e7c8-f60b-43ab-a37b-9f9224fdf482
+		summarizeBy: none
+		sourceColumn: transaction_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_category
+		dataType: string
+		lineageTag: 74c799ee-3d28-42cd-b176-5d0d18cd4a16
+		summarizeBy: none
+		sourceColumn: transaction_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 628c8f04-8f81-4ce1-8f3b-e927fbc805bd
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_approved
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 305cfc72-d136-4068-a322-68b6204988e3
+		summarizeBy: none
+		sourceColumn: is_approved
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_usd
+		dataType: double
+		lineageTag: 35ebd6ec-d79f-412e-826d-f083a503b641
+		summarizeBy: sum
+		sourceColumn: amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column approved_amount_usd
+		dataType: double
+		lineageTag: 8e67e66b-790f-4558-920b-260eea76f35f
+		summarizeBy: sum
+		sourceColumn: approved_amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'analytics fct_transactions' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "healthy_retention"),
+				    analytics_fct_transactions = Source{[Schema="analytics",Item="fct_transactions"]}[Data]
+				in
+				    analytics_fct_transactions
+
+	annotation PBI_ResultType = Table
+

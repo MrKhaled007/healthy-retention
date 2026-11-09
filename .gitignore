@@ -1,0 +1,14 @@
+# Raw data: download from Mendeley instead (see README)
+data/raw/
+
+# Python environment
+.venv/
+
+# dbt logs and build output
+logs/
+**/target/
+**/dbt_packages/
+
+# Power BI: local data cache and personal settings
+**/.pbi/cache.abf
+**/.pbi/localSettings.json

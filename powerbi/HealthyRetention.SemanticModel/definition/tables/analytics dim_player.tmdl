@@ -1,0 +1,166 @@
+table 'analytics dim_player'
+	lineageTag: ac520ae9-4e3c-4f16-8826-0591297c5328
+
+	column player_id
+		dataType: string
+		lineageTag: aa29c166-cae7-4539-8f83-61c5e1392e85
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: 9fa860ff-5733-4909-8e4f-a35bb56ffc00
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_seen_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bbed7df8-f5be-4d93-b4e8-00b130d8e119
+		summarizeBy: none
+		sourceColumn: first_seen_date
+
+		variation Variation
+			isDefault
+			relationship: 89aa9d11-ce2f-45af-86ab-92f95aab6250
+			defaultHierarchy: LocalDateTable_bf45ff85-b00e-40db-a952-19ed2dea5887.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cohort_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 59c35428-3a18-4fc3-af91-1962946ae10b
+		summarizeBy: none
+		sourceColumn: cohort_month
+
+		variation Variation
+			isDefault
+			relationship: 27ae3a7d-6b8e-484f-87e5-9f156764257f
+			defaultHierarchy: LocalDateTable_889e2532-01c2-44ed-a004-840fb60cfb7e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column player_type
+		dataType: string
+		lineageTag: bd3042d8-aec1-46ba-985a-32d021211a88
+		summarizeBy: none
+		sourceColumn: player_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_funding_attempt_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2392af67-5c81-4523-9be7-a202d898382c
+		summarizeBy: none
+		sourceColumn: first_funding_attempt_date
+
+		variation Variation
+			isDefault
+			relationship: bb2906ef-b50b-46ef-ad87-37cdc49b47f6
+			defaultHierarchy: LocalDateTable_1f35cef7-7616-410c-a983-b1ce98b6661f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column first_successful_funding_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 08f1c965-e18d-439d-a9af-d5b787d58ffd
+		summarizeBy: none
+		sourceColumn: first_successful_funding_date
+
+		variation Variation
+			isDefault
+			relationship: 98cb9a14-0b25-4107-abd2-7047db876218
+			defaultHierarchy: LocalDateTable_2916cf32-d14b-4681-93fd-e79379a62ecc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column first_deposit_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4bbd2d76-495e-4a4b-9650-e468763ca849
+		summarizeBy: none
+		sourceColumn: first_deposit_date
+
+		variation Variation
+			isDefault
+			relationship: ed47e6d0-6f6e-46bb-9171-feddbdd4fab2
+			defaultHierarchy: LocalDateTable_eb352054-3123-482f-84f8-d35dcdff90e3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column second_deposit_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 166463f3-8c84-4d99-b5e2-4f8a66de6658
+		summarizeBy: none
+		sourceColumn: second_deposit_date
+
+		variation Variation
+			isDefault
+			relationship: 783af993-2d2f-4df5-8668-b4b9f0d32a3e
+			defaultHierarchy: LocalDateTable_47fe296f-8e9f-437c-a0e8-a291071cf94b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column first_withdrawal_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f3b420c2-2d9c-42c2-801c-f4a88230b36a
+		summarizeBy: none
+		sourceColumn: first_withdrawal_date
+
+		variation Variation
+			isDefault
+			relationship: 9fc96378-b644-45fa-9b2a-ea3fa0c3dee4
+			defaultHierarchy: LocalDateTable_e22e869d-5e40-44b3-b0ec-b7c1428d160a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column last_seen_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bd7963b9-873e-4619-8830-3391ea0a81ba
+		summarizeBy: none
+		sourceColumn: last_seen_date
+
+		variation Variation
+			isDefault
+			relationship: 15d14b99-31ed-4e6b-950c-5e8115a91581
+			defaultHierarchy: LocalDateTable_268ec47e-77c9-4679-ac03-a863a59dde65.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'analytics dim_player' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "healthy_retention"),
+				    analytics_dim_player = Source{[Schema="analytics",Item="dim_player"]}[Data]
+				in
+				    analytics_dim_player
+
+	annotation PBI_ResultType = Table
+

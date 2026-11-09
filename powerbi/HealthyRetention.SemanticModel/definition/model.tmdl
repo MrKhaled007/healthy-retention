@@ -1,0 +1,41 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["analytics dim_brand","analytics dim_date","analytics dim_player","analytics fct_player_month","analytics fct_transactions"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'analytics dim_brand'
+ref table 'analytics dim_date'
+ref table DateTableTemplate_46437ae4-ea19-43d9-bc33-0fca2d630354
+ref table LocalDateTable_cb9e7fd9-9424-4aa2-a44e-c757eb0cb5a5
+ref table LocalDateTable_2ea23a67-2599-4078-9521-c392c0f62495
+ref table LocalDateTable_8871bc89-8622-4839-8f1d-f70178183c4a
+ref table 'analytics dim_player'
+ref table LocalDateTable_bf45ff85-b00e-40db-a952-19ed2dea5887
+ref table LocalDateTable_889e2532-01c2-44ed-a004-840fb60cfb7e
+ref table LocalDateTable_1f35cef7-7616-410c-a983-b1ce98b6661f
+ref table LocalDateTable_2916cf32-d14b-4681-93fd-e79379a62ecc
+ref table LocalDateTable_eb352054-3123-482f-84f8-d35dcdff90e3
+ref table LocalDateTable_47fe296f-8e9f-437c-a0e8-a291071cf94b
+ref table LocalDateTable_e22e869d-5e40-44b3-b0ec-b7c1428d160a
+ref table LocalDateTable_268ec47e-77c9-4679-ac03-a863a59dde65
+ref table 'analytics fct_player_month'
+ref table LocalDateTable_ee82623c-d010-4444-aa05-a148f620afa1
+ref table LocalDateTable_922a57d4-c6fd-4ecc-bcbe-b59df9951689
+ref table 'analytics fct_transactions'
+ref table LocalDateTable_ce28bd6b-1527-4b31-bfc4-910b08902dc3
+ref table LocalDateTable_7dd039f9-46c6-4d07-82fa-53c0c5c6912a
+ref table LocalDateTable_d0b85b58-7589-4a47-a27f-1091d5c2aef9
+ref table LocalDateTable_11cb95a7-dd4a-44fc-8264-54376b0de263
+ref table LocalDateTable_029a1c77-9e50-47f0-9d2b-287703b3af8c
+
+ref cultureInfo en-US
+

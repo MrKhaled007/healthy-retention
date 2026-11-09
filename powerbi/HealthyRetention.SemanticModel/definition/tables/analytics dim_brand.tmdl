@@ -1,0 +1,55 @@
+table 'analytics dim_brand'
+	lineageTag: 030a6f22-a692-4d36-a639-23b10402d409
+
+	column brand
+		dataType: string
+		lineageTag: 29074282-1bd1-4b05-80fc-dedc770e3750
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand_label
+		dataType: string
+		lineageTag: c5db6c03-0839-4407-b528-deccdcec1b90
+		summarizeBy: none
+		sourceColumn: brand_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 07bacc06-9ded-48cb-a5fb-beae4acacf2b
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column local_time_zone
+		dataType: string
+		lineageTag: 2d2c4bd3-0cc0-41eb-955e-ab66890b7a18
+		summarizeBy: none
+		sourceColumn: local_time_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_ach_funding
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 318f3d3e-3c0f-47df-9594-fc7d1404f8ad
+		summarizeBy: none
+		sourceColumn: has_ach_funding
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'analytics dim_brand' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "healthy_retention"),
+				    analytics_dim_brand = Source{[Schema="analytics",Item="dim_brand"]}[Data]
+				in
+				    analytics_dim_brand
+
+	annotation PBI_ResultType = Table
+

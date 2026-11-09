@@ -142,6 +142,12 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20;   naturally deposit more) and matches what an operator could act on in practice.
 
+17\. Data reaches Power BI by import from PostgreSQL (analytics schema) in Power BI Desktop.
+
+&#x20;   The report is saved as a Power BI Project (PBIP) in Git and published to a Fabric
+
+&#x20;   workspace at the end. A Fabric Lakehouse version is a possible later extension.
+
 
 
 \### Open questions
