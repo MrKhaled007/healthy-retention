@@ -1,0 +1,223 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "aceb500b2164a80434b4",
+  "position": {
+    "x": 9.72644376899696,
+    "y": 0,
+    "z": 0,
+    "height": 539.81762917933133,
+    "width": 847.17325227963534
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_brand"
+                    }
+                  },
+                  "Property": "brand"
+                }
+              },
+              "queryRef": "dim_brand.brand",
+              "nativeQueryRef": "brand"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Approved Deposits"
+                }
+              },
+              "queryRef": "_Measures.Approved Deposits",
+              "nativeQueryRef": "Approved Deposits"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Deposit Amount"
+                }
+              },
+              "queryRef": "_Measures.Deposit Amount",
+              "nativeQueryRef": "Deposit Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Depositing Players"
+                }
+              },
+              "queryRef": "_Measures.Depositing Players",
+              "nativeQueryRef": "Depositing Players"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Funding Attempts"
+                }
+              },
+              "queryRef": "_Measures.Funding Attempts",
+              "nativeQueryRef": "Funding Attempts"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Funding Decline Rate"
+                }
+              },
+              "queryRef": "_Measures.Funding Decline Rate",
+              "nativeQueryRef": "Funding Decline Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Funding Declines"
+                }
+              },
+              "queryRef": "_Measures.Funding Declines",
+              "nativeQueryRef": "Funding Declines"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e304a7174ba667aa9702",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_brand"
+              }
+            },
+            "Property": "brand"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "61301c1ae4a9e00210e6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Approved Deposits"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "953ecae99900c99021c2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Deposit Amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b29afff0166bc6081a5e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Depositing Players"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7f320dd94342014d0258",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Funding Attempts"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f36d719029e70be4dc87",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Funding Decline Rate"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0c3ef54505d4045c6014",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Funding Declines"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

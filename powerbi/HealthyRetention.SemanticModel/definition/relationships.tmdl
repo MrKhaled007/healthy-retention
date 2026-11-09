@@ -82,17 +82,9 @@ relationship 973fed1c-603d-5604-2385-ee1d4dbfc3ba
 	fromColumn: fct_transactions.player_id
 	toColumn: dim_player.player_id
 
-relationship 22389dc9-53cc-aa99-9974-a8c33880282d
-	fromColumn: fct_transactions.brand
-	toColumn: dim_brand.brand
-
 relationship 32fcd77b-c69f-955b-9930-6adf77ac1850
 	fromColumn: fct_transactions.date_pacific
 	toColumn: dim_date.date_pacific
-
-relationship 3a0f6ee5-253b-9172-7261-cabe85d006e8
-	fromColumn: fct_player_month.brand
-	toColumn: dim_brand.brand
 
 relationship 43654aaf-e7d3-df7a-a147-c91e5df05b51
 	fromColumn: fct_player_month.player_id
@@ -101,4 +93,8 @@ relationship 43654aaf-e7d3-df7a-a147-c91e5df05b51
 relationship eb65a9c7-0695-097d-ab4c-a7fd7dfa77aa
 	fromColumn: fct_player_month.month_pacific
 	toColumn: dim_date.date_pacific
+
+relationship 40ec236b-95dd-12b5-026e-cc1edb680412
+	fromColumn: dim_player.brand
+	toColumn: dim_brand.brand
 
