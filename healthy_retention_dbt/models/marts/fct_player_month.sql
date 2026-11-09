@@ -9,8 +9,14 @@ with transactions as (
 
 players as (
 
-    select player_id, brand, cohort_month
-    from {{ ref('dim_player') }}
+    -- Cohort month calculated here (not from dim_player) to avoid a loop:
+    -- dim_player now reads from this model.
+    select
+        player_id,
+        max(brand)                                  as brand,
+        date_trunc('month', min(date_pacific))::date as cohort_month
+    from transactions
+    group by player_id
 
 ),
 

@@ -148,6 +148,14 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20;   workspace at the end. A Fabric Lakehouse version is a possible later extension.
 
+18\. Player-level logic from Analyses 1, 3, 4 and 5 (journey stage, activity flags, segment,
+
+&#x20;   early high-intensity, first funding attempt, declines in first 30 days) lives in dim\_player,
+
+&#x20;   so SQL and Power BI use one tested definition. Segment thresholds are calculated per brand.
+
+&#x20;   fct\_player\_month calculates its own cohort month to avoid a dependency loop with dim\_player.
+
 
 
 \### Open questions
