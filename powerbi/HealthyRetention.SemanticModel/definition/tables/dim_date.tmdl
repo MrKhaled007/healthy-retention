@@ -1,4 +1,4 @@
-table 'analytics dim_date'
+table dim_date
 	lineageTag: 9f8f38a0-61e9-4e6a-bf13-9be67eaa678a
 
 	column date_pacific
@@ -118,7 +118,7 @@ table 'analytics dim_date'
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'analytics dim_date' = m
+	partition dim_date = m
 		mode: import
 		source =
 				let
@@ -126,6 +126,8 @@ table 'analytics dim_date'
 				    analytics_dim_date = Source{[Schema="analytics",Item="dim_date"]}[Data]
 				in
 				    analytics_dim_date
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

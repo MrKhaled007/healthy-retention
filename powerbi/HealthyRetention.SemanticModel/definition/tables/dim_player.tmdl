@@ -1,4 +1,4 @@
-table 'analytics dim_player'
+table dim_player
 	lineageTag: ac520ae9-4e3c-4f16-8826-0591297c5328
 
 	column player_id
@@ -153,7 +153,7 @@ table 'analytics dim_player'
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	partition 'analytics dim_player' = m
+	partition dim_player = m
 		mode: import
 		source =
 				let
@@ -161,6 +161,8 @@ table 'analytics dim_player'
 				    analytics_dim_player = Source{[Schema="analytics",Item="dim_player"]}[Data]
 				in
 				    analytics_dim_player
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

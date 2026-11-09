@@ -110,7 +110,7 @@ table LocalDateTable_7dd039f9-46c6-4d07-82fa-53c0c5c6912a
 
 	partition LocalDateTable_7dd039f9-46c6-4d07-82fa-53c0c5c6912a = calculated
 		mode: import
-		source = Calendar(Date(Year(MIN('analytics fct_transactions'[month_pacific])), 1, 1), Date(Year(MAX('analytics fct_transactions'[month_pacific])), 12, 31))
+		source = Calendar(Date(Year(MIN('fct_transactions'[month_pacific])), 1, 1), Date(Year(MAX('fct_transactions'[month_pacific])), 12, 31))
 
 	annotation __PBI_LocalDateTable = true
 

@@ -1,4 +1,4 @@
-table 'analytics fct_player_month'
+table fct_player_month
 	lineageTag: 1e97420f-75c3-40f6-af5a-09c4b269d6c9
 
 	column player_month_id
@@ -47,11 +47,6 @@ table 'analytics fct_player_month'
 		lineageTag: f0a23ee8-14be-42c6-80c4-d151f8e5f632
 		summarizeBy: none
 		sourceColumn: month_pacific
-
-		variation Variation
-			isDefault
-			relationship: 2f4e1dcf-6cba-4fc4-8c7c-0c7a54de45d1
-			defaultHierarchy: LocalDateTable_922a57d4-c6fd-4ecc-bcbe-b59df9951689.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -140,7 +135,7 @@ table 'analytics fct_player_month'
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'analytics fct_player_month' = m
+	partition fct_player_month = m
 		mode: import
 		source =
 				let
@@ -148,6 +143,8 @@ table 'analytics fct_player_month'
 				    analytics_fct_player_month = Source{[Schema="analytics",Item="fct_player_month"]}[Data]
 				in
 				    analytics_fct_player_month
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

@@ -1,4 +1,4 @@
-table 'analytics dim_brand'
+table dim_brand
 	lineageTag: 030a6f22-a692-4d36-a639-23b10402d409
 
 	column brand
@@ -42,7 +42,7 @@ table 'analytics dim_brand'
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'analytics dim_brand' = m
+	partition dim_brand = m
 		mode: import
 		source =
 				let
@@ -50,6 +50,8 @@ table 'analytics dim_brand'
 				    analytics_dim_brand = Source{[Schema="analytics",Item="dim_brand"]}[Data]
 				in
 				    analytics_dim_brand
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

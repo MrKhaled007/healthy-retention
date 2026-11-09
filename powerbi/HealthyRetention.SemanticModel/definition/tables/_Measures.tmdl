@@ -1,0 +1,70 @@
+table _Measures
+	lineageTag: 1ea1b29e-6212-444a-b8cd-d2b746c5c720
+
+	measure 'Approved Deposits' =
+			
+			CALCULATE (
+			    COUNTROWS ( fct_transactions ),
+			    fct_transactions[transaction_category] = "deposit_to_gambling",
+			    fct_transactions[is_approved] = TRUE ()
+			)
+		formatString: 0
+		lineageTag: 3a2f18b2-82c8-455a-84de-f1e0c03ed84f
+
+	measure 'Deposit Amount' =
+			
+			CALCULATE (
+			    SUM ( fct_transactions[approved_amount_usd] ),
+			    fct_transactions[transaction_category] = "deposit_to_gambling"
+			)
+		lineageTag: 4b6bc059-4504-407a-aacf-071e2ebdd384
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Depositing Players' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( fct_transactions[player_id] ),
+			    fct_transactions[transaction_category] = "deposit_to_gambling",
+			    fct_transactions[is_approved] = TRUE ()
+			)
+		formatString: 0
+		lineageTag: b65bf8e2-8d58-4e33-9aca-8c935d7a1b21
+
+	measure 'Funding Attempts' =
+			
+			CALCULATE (
+			    COUNTROWS ( fct_transactions ),
+			    fct_transactions[transaction_category] IN { "wallet_funding_card", "wallet_funding_ach" }
+			)
+		formatString: 0
+		lineageTag: 763d1a96-8d0c-4a52-9470-aa2e9b4e4581
+
+	measure 'Funding Declines' =
+			
+			CALCULATE (
+			    [Funding Attempts],
+			    fct_transactions[is_approved] = FALSE ()
+			)
+		formatString: 0
+		lineageTag: c6417714-38eb-4d88-af6a-711a6029ae25
+
+	measure 'Funding Decline Rate' =
+			
+			DIVIDE ( [Funding Declines], [Funding Attempts] )
+		lineageTag: 8391fe11-94bb-4767-bff2-f67678102e29
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

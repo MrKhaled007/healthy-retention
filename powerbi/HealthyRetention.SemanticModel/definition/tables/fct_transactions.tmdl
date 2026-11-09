@@ -1,4 +1,4 @@
-table 'analytics fct_transactions'
+table fct_transactions
 	lineageTag: a1d2bec8-3cb6-45d4-b114-46bf1fce06a3
 
 	column transaction_id
@@ -31,11 +31,6 @@ table 'analytics fct_transactions'
 		lineageTag: 13a0aa40-6cfc-41ca-acc3-33d081431f90
 		summarizeBy: none
 		sourceColumn: date_pacific
-
-		variation Variation
-			isDefault
-			relationship: de6f62bf-e46b-4e7f-9221-0f3a28a341d3
-			defaultHierarchy: LocalDateTable_ce28bd6b-1527-4b31-bfc4-910b08902dc3.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -152,7 +147,7 @@ table 'analytics fct_transactions'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition 'analytics fct_transactions' = m
+	partition fct_transactions = m
 		mode: import
 		source =
 				let
@@ -160,6 +155,8 @@ table 'analytics fct_transactions'
 				    analytics_fct_transactions = Source{[Schema="analytics",Item="fct_transactions"]}[Data]
 				in
 				    analytics_fct_transactions
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

@@ -1,112 +1,104 @@
 relationship 4b71d082-f187-436f-bd46-e49ca13c1273
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_date'.date_pacific
+	fromColumn: dim_date.date_pacific
 	toColumn: LocalDateTable_cb9e7fd9-9424-4aa2-a44e-c757eb0cb5a5.Date
 
 relationship 28aeeeab-bdf0-4bc2-b755-e3796a842f93
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_date'.month_start
+	fromColumn: dim_date.month_start
 	toColumn: LocalDateTable_2ea23a67-2599-4078-9521-c392c0f62495.Date
 
 relationship efa468fb-fd97-4fb1-b2b6-efcf87324be3
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_date'.week_start
+	fromColumn: dim_date.week_start
 	toColumn: LocalDateTable_8871bc89-8622-4839-8f1d-f70178183c4a.Date
 
 relationship 89aa9d11-ce2f-45af-86ab-92f95aab6250
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_player'.first_seen_date
+	fromColumn: dim_player.first_seen_date
 	toColumn: LocalDateTable_bf45ff85-b00e-40db-a952-19ed2dea5887.Date
 
 relationship 27ae3a7d-6b8e-484f-87e5-9f156764257f
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_player'.cohort_month
+	fromColumn: dim_player.cohort_month
 	toColumn: LocalDateTable_889e2532-01c2-44ed-a004-840fb60cfb7e.Date
 
 relationship bb2906ef-b50b-46ef-ad87-37cdc49b47f6
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_player'.first_funding_attempt_date
+	fromColumn: dim_player.first_funding_attempt_date
 	toColumn: LocalDateTable_1f35cef7-7616-410c-a983-b1ce98b6661f.Date
 
 relationship 98cb9a14-0b25-4107-abd2-7047db876218
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_player'.first_successful_funding_date
+	fromColumn: dim_player.first_successful_funding_date
 	toColumn: LocalDateTable_2916cf32-d14b-4681-93fd-e79379a62ecc.Date
 
 relationship ed47e6d0-6f6e-46bb-9171-feddbdd4fab2
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_player'.first_deposit_date
+	fromColumn: dim_player.first_deposit_date
 	toColumn: LocalDateTable_eb352054-3123-482f-84f8-d35dcdff90e3.Date
 
 relationship 783af993-2d2f-4df5-8668-b4b9f0d32a3e
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_player'.second_deposit_date
+	fromColumn: dim_player.second_deposit_date
 	toColumn: LocalDateTable_47fe296f-8e9f-437c-a0e8-a291071cf94b.Date
 
 relationship 9fc96378-b644-45fa-9b2a-ea3fa0c3dee4
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_player'.first_withdrawal_date
+	fromColumn: dim_player.first_withdrawal_date
 	toColumn: LocalDateTable_e22e869d-5e40-44b3-b0ec-b7c1428d160a.Date
 
 relationship 15d14b99-31ed-4e6b-950c-5e8115a91581
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics dim_player'.last_seen_date
+	fromColumn: dim_player.last_seen_date
 	toColumn: LocalDateTable_268ec47e-77c9-4679-ac03-a863a59dde65.Date
 
 relationship 37686836-af51-45a3-b785-3dfb7cb82db2
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics fct_player_month'.cohort_month
+	fromColumn: fct_player_month.cohort_month
 	toColumn: LocalDateTable_ee82623c-d010-4444-aa05-a148f620afa1.Date
-
-relationship 2f4e1dcf-6cba-4fc4-8c7c-0c7a54de45d1
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics fct_player_month'.month_pacific
-	toColumn: LocalDateTable_922a57d4-c6fd-4ecc-bcbe-b59df9951689.Date
-
-relationship de6f62bf-e46b-4e7f-9221-0f3a28a341d3
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics fct_transactions'.date_pacific
-	toColumn: LocalDateTable_ce28bd6b-1527-4b31-bfc4-910b08902dc3.Date
 
 relationship 3f1ef523-06d7-465c-874a-8abcf8b97c58
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics fct_transactions'.month_pacific
+	fromColumn: fct_transactions.month_pacific
 	toColumn: LocalDateTable_7dd039f9-46c6-4d07-82fa-53c0c5c6912a.Date
 
 relationship 0206f21f-001e-4f02-b8c9-f3d41262d0b8
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics fct_transactions'.ts_utc
+	fromColumn: fct_transactions.ts_utc
 	toColumn: LocalDateTable_d0b85b58-7589-4a47-a27f-1091d5c2aef9.Date
 
 relationship 5183e91e-528e-427b-8964-cfd308ff9769
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics fct_transactions'.ts_pacific
+	fromColumn: fct_transactions.ts_pacific
 	toColumn: LocalDateTable_11cb95a7-dd4a-44fc-8264-54376b0de263.Date
 
 relationship 46fb21aa-88d6-4df7-9f22-1f9af4930f0a
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'analytics fct_transactions'.ts_local
+	fromColumn: fct_transactions.ts_local
 	toColumn: LocalDateTable_029a1c77-9e50-47f0-9d2b-287703b3af8c.Date
 
-relationship AutoDetected_6e4779ea-b09b-4c26-af51-0fc4f2f22252
-	fromColumn: 'analytics dim_player'.brand
-	toColumn: 'analytics dim_brand'.brand
+relationship 973fed1c-603d-5604-2385-ee1d4dbfc3ba
+	fromColumn: fct_transactions.player_id
+	toColumn: dim_player.player_id
 
-relationship AutoDetected_36ed737d-cea0-4d16-8c03-e3d54989acf8
-	fromColumn: 'analytics fct_player_month'.brand
-	toColumn: 'analytics dim_brand'.brand
+relationship 22389dc9-53cc-aa99-9974-a8c33880282d
+	fromColumn: fct_transactions.brand
+	toColumn: dim_brand.brand
 
-relationship AutoDetected_7cbe5a27-112a-4004-b256-12492ea243e6
-	fromColumn: 'analytics fct_transactions'.brand
-	toColumn: 'analytics dim_brand'.brand
+relationship 32fcd77b-c69f-955b-9930-6adf77ac1850
+	fromColumn: fct_transactions.date_pacific
+	toColumn: dim_date.date_pacific
 
-relationship AutoDetected_ed13f478-4ce1-4899-b51a-879d78460422
-	isActive: false
-	fromColumn: 'analytics fct_player_month'.player_id
-	toColumn: 'analytics dim_player'.player_id
+relationship 3a0f6ee5-253b-9172-7261-cabe85d006e8
+	fromColumn: fct_player_month.brand
+	toColumn: dim_brand.brand
 
-relationship AutoDetected_a9a96421-7a37-42ae-b917-ef5660c2356f
-	isActive: false
-	fromColumn: 'analytics fct_transactions'.player_id
-	toColumn: 'analytics dim_player'.player_id
+relationship 43654aaf-e7d3-df7a-a147-c91e5df05b51
+	fromColumn: fct_player_month.player_id
+	toColumn: dim_player.player_id
+
+relationship eb65a9c7-0695-097d-ab4c-a7fd7dfa77aa
+	fromColumn: fct_player_month.month_pacific
+	toColumn: dim_date.date_pacific
 
