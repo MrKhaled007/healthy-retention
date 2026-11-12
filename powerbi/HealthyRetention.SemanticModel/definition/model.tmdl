@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["dim_brand","dim_date","dim_player","fct_player_month","fct_transactions","_Measures"]
+annotation PBI_QueryOrder = ["dim_brand","dim_date","dim_player","fct_player_month","fct_transactions","_Measures","Journey Steps"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -35,6 +35,7 @@ ref table LocalDateTable_d0b85b58-7589-4a47-a27f-1091d5c2aef9
 ref table LocalDateTable_11cb95a7-dd4a-44fc-8264-54376b0de263
 ref table LocalDateTable_029a1c77-9e50-47f0-9d2b-287703b3af8c
 ref table _Measures
+ref table 'Journey Steps'
 
 ref cultureInfo en-US
 

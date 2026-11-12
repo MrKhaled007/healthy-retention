@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 177.13798160726674,
-        "y": 3.7710622292623275
+        "x": 0,
+        "y": 0
       },
       "nodes": [
         {
@@ -82,6 +82,19 @@
           "nodeLineageTag": "1ea1b29e-6212-444a-b8cd-d2b746c5c720",
           "size": {
             "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1253.9902268606106,
+            "y": 400.88369614340439
+          },
+          "nodeIndex": "Journey Steps",
+          "nodeLineageTag": "55aee23e-05c3-4a1f-82bd-b79ecb7c4820",
+          "size": {
+            "height": 128,
             "width": 234
           },
           "zIndex": 0

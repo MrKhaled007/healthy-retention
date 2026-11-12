@@ -243,6 +243,37 @@ table dim_player
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Decline Group' =
+			
+			SWITCH (
+			    TRUE (),
+			    ISBLANK ( dim_player[first_funding_attempt_date] ), "No funding attempt",
+			    dim_player[funding_declines_first_30d] = 0, "0 declines",
+			    dim_player[funding_declines_first_30d] = 1, "1 decline",
+			    dim_player[funding_declines_first_30d] <= 5, "2-5 declines",
+			    "6+ declines"
+			)
+		lineageTag: 74d1984e-2a9a-4049-8753-049d77ef3ab1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Decline Group Order' =
+			
+			SWITCH (
+			    dim_player[Decline Group],
+			    "0 declines", 1,
+			    "1 decline", 2,
+			    "2-5 declines", 3,
+			    "6+ declines", 4,
+			    5
+			)
+		formatString: 0
+		lineageTag: 9fb4453a-9f20-4cab-8a39-f056a1cacbcd
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition dim_player = m
 		mode: import
 		source =

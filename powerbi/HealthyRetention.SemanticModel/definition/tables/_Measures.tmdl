@@ -116,6 +116,89 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 0cc579c4-83da-4dc4-a861-fd7314009d68
 
+	measure 'Journey Players' =
+			
+			VAR CurrentStep = SELECTEDVALUE ( 'Journey Steps'[Step] )
+			RETURN
+			    CALCULATE ( [Players], dim_player[journey_stage] >= CurrentStep )
+		formatString: 0
+		lineageTag: 82864221-de0f-40f0-9e39-2b3241485685
+
+	measure 'Journey % of New Players' =
+			
+			DIVIDE (
+			    [Journey Players],
+			    CALCULATE (
+			        [Journey Players],
+			        REMOVEFILTERS ( 'Journey Steps' ),
+			        'Journey Steps'[Step] = 1
+			    )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 235980ad-6383-418a-a91b-673a4b82dda5
+
+	measure 'Journey % of Previous Step' =
+			
+			VAR CurrentStep = SELECTEDVALUE ( 'Journey Steps'[Step] )
+			RETURN
+			    IF (
+			        CurrentStep > 1,
+			        DIVIDE (
+			            [Journey Players],
+			            CALCULATE (
+			                [Journey Players],
+			                REMOVEFILTERS ( 'Journey Steps' ),
+			                'Journey Steps'[Step] = CurrentStep - 1
+			            )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 46155714-b950-4895-9fe0-7cf0040d4adf
+
+	measure '% of Deposit Money' =
+			
+			DIVIDE (
+			    [Deposit Amount],
+			    CALCULATE ( [Deposit Amount], ALLSELECTED ( dim_player ) )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 89525e71-ae0b-4e11-b630-6aec20856518
+
+	measure 'Median Monthly Deposit' =
+			
+			MEDIAN ( dim_player[monthly_deposit_usd] )
+		lineageTag: 2726de92-a2cc-4f41-8c93-d6113029f251
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'M3 Deposit Amount' =
+			
+			CALCULATE (
+			    SUM ( fct_player_month[deposits_amount_usd] ),
+			    fct_player_month[months_since_first_seen] = 3
+			)
+		lineageTag: a0761c10-838e-4767-b54a-f70d215a9494
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% of M3 Deposit Money' =
+			
+			DIVIDE (
+			    [M3 Deposit Amount],
+			    CALCULATE ( [M3 Deposit Amount], ALLSELECTED ( dim_player ) )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7168d973-cec3-4bde-a52c-51727d11cb8e
+
+	measure '% of M3 Active Players' =
+			
+			DIVIDE (
+			    [Active M3 Players],
+			    CALCULATE ( [Active M3 Players], ALLSELECTED ( dim_player ) )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: dd4b0b89-d441-4186-975d-b2b50dd21fdd
+
 	partition _Measures = m
 		mode: import
 		source =

@@ -1,0 +1,34 @@
+table 'Journey Steps'
+	lineageTag: 55aee23e-05c3-4a1f-82bd-b79ecb7c4820
+
+	column Step
+		dataType: int64
+		formatString: 0
+		lineageTag: f0c155eb-5f2e-4c6d-875f-10df1eb49fe8
+		summarizeBy: sum
+		sourceColumn: Step
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Step Name'
+		dataType: string
+		lineageTag: a69f2df8-4dfc-4f4b-afe9-8a0fca0721a8
+		summarizeBy: none
+		sourceColumn: Step Name
+		sortByColumn: Step
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Journey Steps' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("XcixDsIgEADQX7nczAJWnbs4urQbYTBwTUkqEDg1/r0nTnV8z1rUqPBKLyjb7U0VnbJopOYaKQBnWB4p9D3IXgT04/BlrI0hUMktct+j7EQ+p7Drk/ToOT4J7jnxCrr3+b8NOvcB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Step = _t, #"Step Name" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Step", Int64.Type}, {"Step Name", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
