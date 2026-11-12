@@ -156,7 +156,5 @@ table fct_transactions
 				in
 				    analytics_fct_transactions
 
-	changedProperty = Name
-
 	annotation PBI_ResultType = Table
 

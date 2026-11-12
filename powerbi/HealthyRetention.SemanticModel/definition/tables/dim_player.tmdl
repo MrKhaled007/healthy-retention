@@ -153,6 +153,96 @@ table dim_player
 
 		annotation UnderlyingDateTimeDataType = Date
 
+	column active_m1
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a37b1ac3-0752-44be-b416-8aba8b99df35
+		summarizeBy: none
+		sourceColumn: active_m1
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_m2
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 182a778d-9fa5-4c75-b7b0-06a3c2d576ca
+		summarizeBy: none
+		sourceColumn: active_m2
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_m3
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1800d362-f4df-4211-bb23-7235771bf49d
+		summarizeBy: none
+		sourceColumn: active_m3
+
+		annotation SummarizationSetBy = Automatic
+
+	column deposit_segment
+		dataType: string
+		lineageTag: 83af7e07-2e2f-4a11-8fab-fc42f3f1b99d
+		summarizeBy: none
+		sourceColumn: deposit_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthly_deposit_usd
+		dataType: double
+		lineageTag: 93fdcfe0-d0fe-4299-9b0a-e02848269384
+		summarizeBy: sum
+		sourceColumn: monthly_deposit_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column first_30d_deposit_usd
+		dataType: double
+		lineageTag: 4372c87e-0138-413b-a227-73b462bdcb7f
+		summarizeBy: sum
+		sourceColumn: first_30d_deposit_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_early_high_intensity
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 53ddb0e7-e28a-4a0b-b705-8df7cc9bd13d
+		summarizeBy: none
+		sourceColumn: is_early_high_intensity
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_funding_attempt_status
+		dataType: string
+		lineageTag: f12c1b3b-cc91-42e4-8143-c24a3ffaa856
+		summarizeBy: none
+		sourceColumn: first_funding_attempt_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column funding_declines_first_30d
+		dataType: int64
+		formatString: 0
+		lineageTag: 853241db-c0fc-44ad-8d5e-c1a52ddde14f
+		summarizeBy: sum
+		sourceColumn: funding_declines_first_30d
+
+		annotation SummarizationSetBy = Automatic
+
+	column journey_stage
+		dataType: int64
+		formatString: 0
+		lineageTag: 42d3ce3b-2a2d-4b9d-8ef3-4e430b3b9075
+		summarizeBy: sum
+		sourceColumn: journey_stage
+
+		annotation SummarizationSetBy = Automatic
+
 	partition dim_player = m
 		mode: import
 		source =
@@ -161,8 +251,6 @@ table dim_player
 				    analytics_dim_player = Source{[Schema="analytics",Item="dim_player"]}[Data]
 				in
 				    analytics_dim_player
-
-	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

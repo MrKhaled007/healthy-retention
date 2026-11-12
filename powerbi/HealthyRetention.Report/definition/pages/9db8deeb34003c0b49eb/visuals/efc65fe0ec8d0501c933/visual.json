@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "aceb500b2164a80434b4",
+  "name": "efc65fe0ec8d0501c933",
   "position": {
     "x": 9.72644376899696,
     "y": 0,
     "z": 0,
-    "height": 539.81762917933133,
-    "width": 847.17325227963534
+    "height": 400.72948328267478,
+    "width": 617.629179331307
   },
   "visual": {
     "visualType": "tableEx",
@@ -19,14 +19,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_brand"
+                      "Entity": "dim_player"
                     }
                   },
-                  "Property": "brand"
+                  "Property": "is_early_high_intensity"
                 }
               },
-              "queryRef": "dim_brand.brand",
-              "nativeQueryRef": "brand"
+              "queryRef": "dim_player.is_early_high_intensity",
+              "nativeQueryRef": "is_early_high_intensity"
             },
             {
               "field": {
@@ -36,11 +36,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Approved Deposits"
+                  "Property": "Players"
                 }
               },
-              "queryRef": "_Measures.Approved Deposits",
-              "nativeQueryRef": "Approved Deposits"
+              "queryRef": "_Measures.Players",
+              "nativeQueryRef": "Players"
             },
             {
               "field": {
@@ -50,11 +50,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Deposit Amount"
+                  "Property": "Retention M1"
                 }
               },
-              "queryRef": "_Measures.Deposit Amount",
-              "nativeQueryRef": "Deposit Amount"
+              "queryRef": "_Measures.Retention M1",
+              "nativeQueryRef": "Retention M1"
             },
             {
               "field": {
@@ -64,11 +64,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Depositing Players"
+                  "Property": "Retention M2"
                 }
               },
-              "queryRef": "_Measures.Depositing Players",
-              "nativeQueryRef": "Depositing Players"
+              "queryRef": "_Measures.Retention M2",
+              "nativeQueryRef": "Retention M2"
             },
             {
               "field": {
@@ -78,39 +78,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Funding Attempts"
+                  "Property": "Retention M3"
                 }
               },
-              "queryRef": "_Measures.Funding Attempts",
-              "nativeQueryRef": "Funding Attempts"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Funding Decline Rate"
-                }
-              },
-              "queryRef": "_Measures.Funding Decline Rate",
-              "nativeQueryRef": "Funding Decline Rate"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Funding Declines"
-                }
-              },
-              "queryRef": "_Measures.Funding Declines",
-              "nativeQueryRef": "Funding Declines"
+              "queryRef": "_Measures.Retention M3",
+              "nativeQueryRef": "Retention M3"
             }
           ]
         }
@@ -121,21 +93,21 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e304a7174ba667aa9702",
+        "name": "d0094708b568aace247c",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "dim_brand"
+                "Entity": "dim_player"
               }
             },
-            "Property": "brand"
+            "Property": "is_early_high_intensity"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "61301c1ae4a9e00210e6",
+        "name": "0f2c33706675dd583a3d",
         "field": {
           "Measure": {
             "Expression": {
@@ -143,13 +115,13 @@
                 "Entity": "_Measures"
               }
             },
-            "Property": "Approved Deposits"
+            "Property": "Players"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "953ecae99900c99021c2",
+        "name": "054708eaa63bcd43b411",
         "field": {
           "Measure": {
             "Expression": {
@@ -157,13 +129,13 @@
                 "Entity": "_Measures"
               }
             },
-            "Property": "Deposit Amount"
+            "Property": "Retention M1"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "b29afff0166bc6081a5e",
+        "name": "047257764d7bc2869593",
         "field": {
           "Measure": {
             "Expression": {
@@ -171,13 +143,13 @@
                 "Entity": "_Measures"
               }
             },
-            "Property": "Depositing Players"
+            "Property": "Retention M2"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "7f320dd94342014d0258",
+        "name": "a450dc9b797569b0872c",
         "field": {
           "Measure": {
             "Expression": {
@@ -185,35 +157,7 @@
                 "Entity": "_Measures"
               }
             },
-            "Property": "Funding Attempts"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f36d719029e70be4dc87",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures"
-              }
-            },
-            "Property": "Funding Decline Rate"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0c3ef54505d4045c6014",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures"
-              }
-            },
-            "Property": "Funding Declines"
+            "Property": "Retention M3"
           }
         },
         "type": "Advanced"

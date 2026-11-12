@@ -56,6 +56,66 @@ table _Measures
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure Players =
+			
+			COUNTROWS ( dim_player )
+		formatString: 0
+		lineageTag: 8c831ed3-7897-49a3-b14f-791aac8abcd2
+
+	measure '% of Players' =
+			
+			DIVIDE (
+			    [Players],
+			    CALCULATE ( [Players], ALLSELECTED ( dim_player ) )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 838639dd-52ed-473b-93e2-d19259d4e7d1
+
+	measure 'Active M1 Players' =
+			
+			CALCULATE ( [Players], dim_player[active_m1] = TRUE () )
+		formatString: 0
+		lineageTag: c2d79988-3c1b-4521-9f9f-e129ec229a45
+
+	measure 'Active M2 Players' =
+			
+			CALCULATE ( [Players], dim_player[active_m2] = TRUE () )
+		formatString: 0
+		lineageTag: 624855c8-fbca-462e-b6d6-f2f02036c923
+
+	measure 'Active M3 Players' =
+			
+			CALCULATE ( [Players], dim_player[active_m3] = TRUE () )
+		formatString: 0
+		lineageTag: 41c26d6c-5fbe-41ab-b981-91d4c41e30b8
+
+	measure 'Retention M1' =
+			
+			DIVIDE ( [Active M1 Players], [Players] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7c074656-ad5d-498f-ab93-4a104c0e3506
+
+	measure 'Retention M2' =
+			
+			DIVIDE ( [Active M2 Players], [Players] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: be704071-f34d-4431-a7bb-adddc4537f48
+
+	measure 'Retention M3' =
+			
+			DIVIDE ( [Active M3 Players], [Players] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: cfcebd10-4b7e-41c3-aa71-8557d73113da
+
+	measure 'Retention %' =
+			
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( fct_player_month ), fct_player_month[is_active] = TRUE () ),
+			    COUNTROWS ( fct_player_month )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0cc579c4-83da-4dc4-a861-fd7314009d68
+
 	partition _Measures = m
 		mode: import
 		source =

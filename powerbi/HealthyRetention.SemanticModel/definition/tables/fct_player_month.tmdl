@@ -144,7 +144,5 @@ table fct_player_month
 				in
 				    analytics_fct_player_month
 
-	changedProperty = Name
-
 	annotation PBI_ResultType = Table
 

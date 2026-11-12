@@ -51,7 +51,5 @@ table dim_brand
 				in
 				    analytics_dim_brand
 
-	changedProperty = Name
-
 	annotation PBI_ResultType = Table
 

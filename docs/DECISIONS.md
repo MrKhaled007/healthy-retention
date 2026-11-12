@@ -82,6 +82,12 @@ Source: Ghaharian et al. (2023), Data in Brief, DOI 10.17632/9j5gcygnwg.1 (CC BY
 
 &#x20; $25,914,871.19 in both tables.
 
+\- Verification in Power BI caught a DAX filter-context bug: "Journey % of Previous Step"
+
+&#x20; kept the row's Step Name filter inside CALCULATE and divided by all players.
+
+&#x20; Fixed with REMOVEFILTERS('Journey Steps'). All funnel numbers now match Analysis 1.
+
 
 
 \### Decisions
