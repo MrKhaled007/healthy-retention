@@ -1,0 +1,49 @@
+table 'Segment Measure'
+	lineageTag: b3914d5b-cde1-4f06-b83c-388d35c5ce3a
+
+	column 'Segment Measure'
+		lineageTag: 70d66d60-7704-48da-a06a-21ba9540b4d7
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Segment Measure Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Segment Measure Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment Measure Fields'
+		isHidden
+		lineageTag: 85c18297-b4c9-402e-9046-5dd4c2e51832
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Segment Measure Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment Measure Order'
+		isHidden
+		formatString: 0
+		lineageTag: 527b0454-f889-45da-afb8-2f584b3d2fb2
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Segment Measure' = calculated
+		mode: import
+		source =
+				{
+				    ( "Share of players", NAMEOF ( '_Measures'[% of Players] ), 0 ),
+				    ( "Share of money", NAMEOF ( '_Measures'[% of Deposit Money] ), 1 ),
+				    ( "Median $/month", NAMEOF ( '_Measures'[Median Monthly Deposit] ), 2 )
+				}
+
+	annotation PBI_Id = 45387bd2d2034410a9194ec7d98d2130
+

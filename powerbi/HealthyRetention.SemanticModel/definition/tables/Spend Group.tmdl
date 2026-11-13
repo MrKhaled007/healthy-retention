@@ -1,0 +1,34 @@
+table 'Spend Group'
+	lineageTag: 454f308b-8b1f-41cc-9d15-f2f74b09e164
+
+	column Group
+		dataType: string
+		lineageTag: cd07d8b8-097e-4d30-afb2-34b798c5899c
+		summarizeBy: none
+		sourceColumn: Group
+		sortByColumn: Order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 867721db-ecc1-4064-9a21-9a6c7becb5c1
+		summarizeBy: sum
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Spend Group' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wck0syqlUyMhMz9DNzCtJzSvOLKlU0lEyVIrViVbyL8lILVJISS3IBwrnFxUDJYyUYmMB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Group = _t, Order = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Group", type text}, {"Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

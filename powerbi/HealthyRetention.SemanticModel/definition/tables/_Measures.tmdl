@@ -199,6 +199,163 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: dd4b0b89-d441-4186-975d-b2b50dd21fdd
 
+	measure 'Group Players' =
+			
+			VAR Threshold = [HI Threshold Value]
+			VAR CurrentGroup = SELECTEDVALUE ( 'Spend Group'[Group] )
+			VAR GroupPlayers =
+			    FILTER (
+			        dim_player,
+			        NOT ISBLANK ( dim_player[first_deposit_date] )
+			            && SWITCH (
+			                CurrentGroup,
+			                "Early high-intensity", dim_player[first_30d_deposit_usd] > Threshold,
+			                "Other depositors", dim_player[first_30d_deposit_usd] <= Threshold,
+			                TRUE ()
+			            )
+			    )
+			RETURN
+			    CALCULATE ( [Players], KEEPFILTERS ( GroupPlayers ) )
+		formatString: 0
+		lineageTag: 546238b0-5263-4ca6-aa87-4c81a33829d1
+
+	measure 'Group Active M1' =
+			
+			CALCULATE ( [Group Players], dim_player[active_m1] = TRUE () )
+		formatString: 0
+		lineageTag: 3919e65d-9989-4b71-88e5-d8fad3d8b4e1
+
+	measure 'Group Active M2' =
+			
+			CALCULATE ( [Group Players], dim_player[active_m2] = TRUE () )
+		formatString: 0
+		lineageTag: da5b1b87-f753-47df-8ca9-4726205775b4
+
+	measure 'Group Active M3' =
+			
+			CALCULATE ( [Group Players], dim_player[active_m3] = TRUE () )
+		formatString: 0
+		lineageTag: 3db530a6-6a8e-4aff-9301-6d0fca9d5aea
+
+	measure 'Group Retention M1' =
+			
+			DIVIDE ( [Group Active M1], [Group Players] )
+		lineageTag: a079d450-7d05-4dd0-ba86-24d52a04bedf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Group Retention M2' =
+			
+			DIVIDE ( [Group Active M2], [Group Players] )
+		lineageTag: 15f23d36-78e7-4600-a9e4-ee8957b23794
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Group Retention M3' =
+			
+			DIVIDE ( [Group Active M3], [Group Players] )
+		lineageTag: a2eba0fd-65aa-4a99-92e3-7e833108e394
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Group % of M3 Active' =
+			
+			DIVIDE (
+			    [Group Active M3],
+			    CALCULATE ( [Group Active M3], REMOVEFILTERS ( 'Spend Group' ) )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f642f3f9-ec97-4675-b4d8-0f4799f41528
+
+	measure 'Group M3 Deposit Amount' =
+			
+			VAR Threshold = [HI Threshold Value]
+			VAR CurrentGroup = SELECTEDVALUE ( 'Spend Group'[Group] )
+			VAR GroupPlayers =
+			    FILTER (
+			        dim_player,
+			        NOT ISBLANK ( dim_player[first_deposit_date] )
+			            && SWITCH (
+			                CurrentGroup,
+			                "Early high-intensity", dim_player[first_30d_deposit_usd] > Threshold,
+			                "Other depositors", dim_player[first_30d_deposit_usd] <= Threshold,
+			                TRUE ()
+			            )
+			    )
+			RETURN
+			    CALCULATE ( [M3 Deposit Amount], KEEPFILTERS ( GroupPlayers ) )
+		lineageTag: be9ef110-a088-46d3-b01c-dd45851f2455
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Group % of M3 Money' =
+			
+			DIVIDE (
+			    [Group M3 Deposit Amount],
+			    CALCULATE ( [Group M3 Deposit Amount], REMOVEFILTERS ( 'Spend Group' ) )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 6ffc57e7-e8b5-4a88-86a2-1ebc3e83b5b6
+
+	measure 'Cohort Range Label' =
+			
+			VAR FirstCohort = MIN ( dim_player[cohort_month] )
+			VAR LastCohort = MAX ( dim_player[cohort_month] )
+			RETURN
+			    IF (
+			        FirstCohort = LastCohort,
+			        FORMAT ( FirstCohort, "mmm yyyy" ),
+			        FORMAT ( FirstCohort, "mmm yyyy" ) & " – " & FORMAT ( LastCohort, "mmm yyyy" )
+			    )
+		lineageTag: 9aebfe59-4a01-4ad0-8493-7771d70b0853
+
+	measure 'Brand Label' =
+			
+			SELECTEDVALUE ( dim_player[brand], "all brands" )
+		lineageTag: 817f8fec-34b7-4c0c-9f17-adb04d9bb00c
+
+	measure 'Title Journey' =
+			
+			"Deposit journey · new " & [Brand Label] & " players · cohorts "
+			    & [Cohort Range Label] & " · " & FORMAT ( [Players], "#,0" ) & " players"
+		lineageTag: e7c5734f-9629-476a-be6f-344c14702f5d
+
+	measure 'Title Retention' =
+			
+			"Monthly retention · new " & [Brand Label] & " players · cohorts "
+			    & [Cohort Range Label] & " · " & FORMAT ( [Players], "#,0" ) & " players"
+		lineageTag: d679604a-9ca8-4e65-8061-58b2bfe01c4c
+
+	measure 'Title Segments' =
+			
+			"Depositor segments · " & [Brand Label] & " depositors · "
+			    & FORMAT ( [Players], "#,0" ) & " players"
+		lineageTag: a8b2d55b-a972-44da-98fb-61f1151a7d6f
+
+	measure 'Title Healthy Retention' =
+			
+			"New " & [Brand Label] & " depositors · cohorts " & [Cohort Range Label]
+			    & " · " & FORMAT ( [Group Players], "#,0" ) & " players · threshold "
+			    & FORMAT ( [HI Threshold Value], "$#,0" ) & " in first 30 days"
+		lineageTag: 40dfa039-da3e-4c83-8408-6bfe7adea1e1
+
+	measure 'Title Friction' =
+			
+			"New " & [Brand Label] & " players who tried to fund · cohorts "
+			    & [Cohort Range Label] & " · " & FORMAT ( [Players], "#,0" ) & " players"
+		lineageTag: f0fcbd19-a90c-49bb-98a6-f38646585f77
+
+	measure 'Segment Chart Title' =
+			
+			SWITCH (
+			    SELECTEDVALUE ( 'Segment Measure'[Segment Measure] ),
+			    "Share of players", "Share of depositors by segment",
+			    "Share of money", "Share of deposit money by segment",
+			    "Median $/month", "Typical monthly deposit by segment",
+			    "Share of deposit money by segment"
+			)
+		lineageTag: 3c4d5dec-2336-4081-bcfe-68fd4fef682d
+
 	partition _Measures = m
 		mode: import
 		source =

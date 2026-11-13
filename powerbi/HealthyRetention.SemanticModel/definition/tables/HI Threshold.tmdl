@@ -1,0 +1,26 @@
+table 'HI Threshold'
+	lineageTag: 641e7735-220a-498f-9e86-62794dbd17b7
+
+	measure 'HI Threshold Value' = SELECTEDVALUE('HI Threshold'[HI Threshold], 1038)
+		formatString: 0
+		lineageTag: ba273190-2db7-4208-8957-1b5184074b45
+
+	column 'HI Threshold'
+		formatString: 0
+		lineageTag: 39847bed-1cee-4855-8986-b782125b0f20
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'HI Threshold' = calculated
+		mode: import
+		source = GENERATESERIES(500, 2000, 1)
+
+	annotation PBI_Id = 7b579a01de94456ebd396cd94a7b82da
+
