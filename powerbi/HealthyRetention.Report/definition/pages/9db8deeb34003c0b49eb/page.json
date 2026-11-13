@@ -268,5 +268,6 @@
       }
     ],
     "filterSortOrder": "Custom"
-  }
+  },
+  "visibility": "HiddenInViewMode"
 }

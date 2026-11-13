@@ -1,0 +1,199 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "player_table",
+  "position": {
+    "x": 224,
+    "y": 96,
+    "z": 8000,
+    "height": 590,
+    "width": 1032,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "player_id"
+                }
+              },
+              "queryRef": "dim_player.player_id",
+              "nativeQueryRef": "player_id",
+              "displayName": "Player"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "cohort_month"
+                }
+              },
+              "queryRef": "dim_player.cohort_month",
+              "nativeQueryRef": "cohort_month",
+              "displayName": "Cohort"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "deposit_segment"
+                }
+              },
+              "queryRef": "dim_player.deposit_segment",
+              "nativeQueryRef": "deposit_segment",
+              "displayName": "Segment"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "monthly_deposit_usd"
+                }
+              },
+              "queryRef": "dim_player.monthly_deposit_usd",
+              "nativeQueryRef": "monthly_deposit_usd",
+              "displayName": "Monthly deposit $"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "first_30d_deposit_usd"
+                }
+              },
+              "queryRef": "dim_player.first_30d_deposit_usd",
+              "nativeQueryRef": "first_30d_deposit_usd",
+              "displayName": "First 30 days $"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "funding_declines_first_30d"
+                }
+              },
+              "queryRef": "dim_player.funding_declines_first_30d",
+              "nativeQueryRef": "funding_declines_first_30d",
+              "displayName": "Declines first 30 days"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "active_m1"
+                }
+              },
+              "queryRef": "dim_player.active_m1",
+              "nativeQueryRef": "active_m1",
+              "displayName": "Active M1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "active_m2"
+                }
+              },
+              "queryRef": "dim_player.active_m2",
+              "nativeQueryRef": "active_m2",
+              "displayName": "Active M2"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "active_m3"
+                }
+              },
+              "queryRef": "dim_player.active_m3",
+              "nativeQueryRef": "active_m3",
+              "displayName": "Active M3"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_player"
+                  }
+                },
+                "Property": "monthly_deposit_usd"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Players'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

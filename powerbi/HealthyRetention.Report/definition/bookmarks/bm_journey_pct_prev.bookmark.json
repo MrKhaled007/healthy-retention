@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.2.0/schema.json",
+  "displayName": "% of previous step",
+  "name": "bm_journey_pct_prev",
+  "options": {
+    "targetVisualNames": [
+      "btn_pct_new_on",
+      "btn_pct_new_off",
+      "btn_pct_prev_on",
+      "btn_pct_prev_off",
+      "journey_pct_new",
+      "journey_pct_prev"
+    ],
+    "applyOnlyToTargetVisuals": true,
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "deposit_journey",
+    "sections": {
+      "deposit_journey": {
+        "visualContainers": {
+          "btn_pct_new_on": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "btn_pct_new_off": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "btn_pct_prev_on": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "btn_pct_prev_off": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "journey_pct_new": {
+            "singleVisual": {
+              "visualType": "clusteredBarChart",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "journey_pct_prev": {
+            "singleVisual": {
+              "visualType": "clusteredBarChart",
+              "objects": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

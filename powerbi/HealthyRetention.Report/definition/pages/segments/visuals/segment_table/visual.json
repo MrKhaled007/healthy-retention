@@ -1,0 +1,132 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "segment_table",
+  "position": {
+    "x": 736,
+    "y": 252,
+    "z": 13000,
+    "height": 348,
+    "width": 520,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "deposit_segment"
+                }
+              },
+              "queryRef": "dim_player.deposit_segment",
+              "nativeQueryRef": "deposit_segment",
+              "displayName": "Segment"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Players"
+                }
+              },
+              "queryRef": "_Measures.Players",
+              "nativeQueryRef": "Players"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "% of Players"
+                }
+              },
+              "queryRef": "_Measures.% of Players",
+              "nativeQueryRef": "% of Players"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Deposit Amount"
+                }
+              },
+              "queryRef": "_Measures.Deposit Amount",
+              "nativeQueryRef": "Deposit Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "% of Deposit Money"
+                }
+              },
+              "queryRef": "_Measures.% of Deposit Money",
+              "nativeQueryRef": "% of Deposit Money"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Median Monthly Deposit"
+                }
+              },
+              "queryRef": "_Measures.Median Monthly Deposit",
+              "nativeQueryRef": "Median Monthly Deposit",
+              "displayName": "Median $/month"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segment summary (right-click a segment to drill through to players)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
