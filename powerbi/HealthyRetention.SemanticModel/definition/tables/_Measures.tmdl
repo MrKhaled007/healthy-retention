@@ -17,9 +17,8 @@ table _Measures
 			    SUM ( fct_transactions[approved_amount_usd] ),
 			    fct_transactions[transaction_category] = "deposit_to_gambling"
 			)
+		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: 4b6bc059-4504-407a-aacf-071e2ebdd384
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Depositing Players' =
 			
@@ -52,9 +51,8 @@ table _Measures
 	measure 'Funding Decline Rate' =
 			
 			DIVIDE ( [Funding Declines], [Funding Attempts] )
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 8391fe11-94bb-4767-bff2-f67678102e29
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Players =
 			
@@ -167,9 +165,8 @@ table _Measures
 	measure 'Median Monthly Deposit' =
 			
 			MEDIAN ( dim_player[monthly_deposit_usd] )
+		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: 2726de92-a2cc-4f41-8c93-d6113029f251
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'M3 Deposit Amount' =
 			
@@ -177,9 +174,8 @@ table _Measures
 			    SUM ( fct_player_month[deposits_amount_usd] ),
 			    fct_player_month[months_since_first_seen] = 3
 			)
+		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: a0761c10-838e-4767-b54a-f70d215a9494
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure '% of M3 Deposit Money' =
 			
@@ -222,19 +218,19 @@ table _Measures
 	measure 'Group Active M1' =
 			
 			CALCULATE ( [Group Players], dim_player[active_m1] = TRUE () )
-		formatString: 0
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 3919e65d-9989-4b71-88e5-d8fad3d8b4e1
 
 	measure 'Group Active M2' =
 			
 			CALCULATE ( [Group Players], dim_player[active_m2] = TRUE () )
-		formatString: 0
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: da5b1b87-f753-47df-8ca9-4726205775b4
 
 	measure 'Group Active M3' =
 			
 			CALCULATE ( [Group Players], dim_player[active_m3] = TRUE () )
-		formatString: 0
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 3db530a6-6a8e-4aff-9301-6d0fca9d5aea
 
 	measure 'Group Retention M1' =
@@ -355,6 +351,13 @@ table _Measures
 			    "Share of deposit money by segment"
 			)
 		lineageTag: 3c4d5dec-2336-4081-bcfe-68fd4fef682d
+
+	measure 'Players Lost After First Deposit' =
+			
+			CALCULATE ( [Journey Players], REMOVEFILTERS ( 'Journey Steps' ), 'Journey Steps'[Step] = 4 )
+			    - CALCULATE ( [Journey Players], REMOVEFILTERS ( 'Journey Steps' ), 'Journey Steps'[Step] = 5 )
+		formatString: 0
+		lineageTag: 070b52fd-ad98-47c3-94ca-b1050a69954d
 
 	partition _Measures = m
 		mode: import
