@@ -1,0 +1,6 @@
+issue_order,issue,how_found,how_handled,decision
+1,Status value "NA" on 6 rows,dbt accepted_values test,Excluded in staging,Decision 11
+2,Exact duplicate rows,Profiling in pandas,Deduplicated in staging (select distinct),Decision 12
+3,Data runs one day past the window,Date profiling,Window fixed to 1 Mar 2019 - 29 Feb 2020,Decision 2
+4,Amounts under $1,Profiling in pandas,Kept (real transactions),Decision 5
+5,No decline reason in the data,Column review,Declines analysed as counts only,Limitation

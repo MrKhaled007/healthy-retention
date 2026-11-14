@@ -318,6 +318,16 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
+			          "Share of players": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
 			          "% players": {
 			            "State": "Suggested",
 			            "Source": {
@@ -371,6 +381,16 @@ cultureInfo en-US
 			        },
 			        {
 			          "getting in works": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "% of new players": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -504,6 +524,16 @@ cultureInfo en-US
 			          }
 			        },
 			        {
+			          "declined first attempt": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
 			          "Duty of Care signal": {
 			            "State": "Suggested",
 			            "Source": {
@@ -535,6 +565,16 @@ cultureInfo en-US
 			          }
 			        },
 			        {
+			          "high-intensity players": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
 			          "Deposit money": {
 			            "State": "Suggested",
 			            "Source": {
@@ -555,16 +595,6 @@ cultureInfo en-US
 			      },
 			      "State": "Generated",
 			      "Terms": [
-			        {
-			          "Share of money": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
 			        {
 			          "% money": {
 			            "State": "Suggested",
@@ -734,6 +764,111 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "of card funding attempts": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.journey_players": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Journey Players"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Players": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.active_m1_players": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Active M1 Players"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "new players": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.funding_declines": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Funding Declines"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "declined funding attempts": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.group_active_m3": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Group Active M3"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "early high-intensity players": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "journey_steps.step_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Journey Steps",
+			          "ConceptualProperty": "Step Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Step": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

@@ -44,6 +44,7 @@
               },
               "queryRef": "_Measures.Journey Players",
               "nativeQueryRef": "Journey Players",
+              "active": false,
               "displayName": "Players"
             },
             {
@@ -59,6 +60,7 @@
               },
               "queryRef": "_Measures.Journey % of New Players",
               "nativeQueryRef": "Journey % of New Players",
+              "active": false,
               "displayName": "% of new players"
             },
             {
@@ -74,6 +76,7 @@
               },
               "queryRef": "_Measures.Journey % of Previous Step",
               "nativeQueryRef": "Journey % of Previous Step",
+              "active": false,
               "displayName": "% of previous step"
             }
           ]
@@ -97,7 +100,6 @@
         ]
       }
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "title": [
         {
@@ -257,6 +259,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }
