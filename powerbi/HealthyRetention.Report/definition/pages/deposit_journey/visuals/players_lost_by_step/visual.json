@@ -10,95 +10,94 @@
     "tabOrder": 15000
   },
   "visual": {
-    "visualType": "textbox",
-    "objects": {
-      "general": [
-        {
-          "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "10pt",
-                      "color": "#E8EEF2"
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Journey Steps"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
+                  },
+                  "Property": "Step Name"
+                }
               },
-              {
-                "textRuns": [
-                  {
-                    "value": "",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "10pt",
-                      "color": "#E8EEF2"
+              "queryRef": "Journey Steps.Step Name",
+              "nativeQueryRef": "Step Name",
+              "active": true,
+              "displayName": "Step"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
+                  },
+                  "Property": "Journey Players"
+                }
               },
-              {
-                "textRuns": [
-                  {
-                    "value": "",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "10pt",
-                      "color": "#E8EEF2"
+              "queryRef": "_Measures.Journey Players",
+              "nativeQueryRef": "Journey Players",
+              "displayName": "Players"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
+                  },
+                  "Property": "Journey % of New Players"
+                }
               },
-              {
-                "textRuns": [
-                  {
-                    "value": "—",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "24pt",
-                      "color": "#7D8F9C"
+              "queryRef": "_Measures.Journey % of New Players",
+              "nativeQueryRef": "Journey % of New Players",
+              "displayName": "% of new players"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "center"
+                  },
+                  "Property": "Journey % of Previous Step"
+                }
               },
-              {
-                "textRuns": [
-                  {
-                    "value": "Needs measure: [Journey Players Lost]",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "8pt",
-                      "color": "#7D8F9C"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "center"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "Labelled horizontal bars, one per step, once the measure exists",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "8pt",
-                      "color": "#7D8F9C"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "center"
-              }
-            ]
-          }
+              "queryRef": "_Measures.Journey % of Previous Step",
+              "nativeQueryRef": "Journey % of Previous Step",
+              "displayName": "% of previous step"
+            }
+          ]
         }
-      ]
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Journey Steps"
+                  }
+                },
+                "Property": "Step Name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
     },
+    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "title": [
         {
@@ -113,7 +112,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Players lost at each step'"
+                  "Value": "'Players at each step'"
                 }
               }
             },
@@ -258,7 +257,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

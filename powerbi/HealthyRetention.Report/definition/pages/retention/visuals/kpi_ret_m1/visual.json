@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "kpi_ret_m1",
   "position": {
-    "x": 715,
+    "x": 1089,
     "y": 76,
     "z": 9000,
-    "height": 158,
+    "height": 328,
     "width": 175,
     "tabOrder": 9000
   },

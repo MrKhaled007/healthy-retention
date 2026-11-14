@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "retention_curve_may",
   "position": {
-    "x": 856,
+    "x": 646,
     "y": 416,
     "z": 17000,
     "height": 272,
-    "width": 408,
+    "width": 618,
     "tabOrder": 17000
   },
   "visual": {

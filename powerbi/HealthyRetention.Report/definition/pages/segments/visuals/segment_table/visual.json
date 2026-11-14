@@ -216,7 +216,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Right-click a segment → Drill through → Player list · Days/mo and Avg declines columns wait for their measures'"
+                  "Value": "'Right-click a segment → Drill through → Player list'"
                 }
               }
             },
