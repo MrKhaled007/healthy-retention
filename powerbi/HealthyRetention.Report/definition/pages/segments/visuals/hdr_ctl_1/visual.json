@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "hdr_ctl_1",
   "position": {
-    "x": 894,
-    "y": 16,
-    "z": 11000,
-    "height": 32,
-    "width": 120,
-    "tabOrder": 11000
+    "x": 918,
+    "y": 12,
+    "z": 6000,
+    "height": 40,
+    "width": 110,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "slicer",
@@ -99,6 +99,40 @@
       ]
     },
     "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {

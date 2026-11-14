@@ -191,10 +191,26 @@ class Page:
         return vname
 
 
+def text_px(text, size_pt):
+    """Conservative width estimate for Segoe UI text (0.55 em per character)."""
+    return len(text) * size_pt * 4 / 3 * 0.55
+
+
+def check_fits(text, size_pt, width):
+    """Fail the build instead of shipping clipped or wrapping one-line text (v1.1 fix #2, #5)."""
+    need = text_px(text, size_pt)
+    if need > width - 6:
+        raise SystemExit(f"Text does not fit ({need:.0f}px > {width - 6}px): {text!r}")
+
+
 def vco(title=None, title_expr=None, title_size=14, subtitle=None, subtitle_expr=None,
-        panel=True, fill=None, border_color=None, radius=4, tooltip_page=None, link=None):
-    """Visual container formatting: v2 panel (bg #26333E, 1px border, radius 4) + title with divider."""
+        panel=True, fill=None, border_color=None, radius=4, tooltip_page=None, link=None, padding=None):
+    """Visual container formatting: v2 panel (bg #26333E, 1px border, radius 4) + title with divider.
+    padding=(top, right, bottom, left) in px; used on one-line text boxes and header slicers."""
     o = {}
+    if padding is not None:
+        t, r, b, l = padding
+        o["padding"] = [{"properties": {"top": num(t), "right": num(r), "bottom": num(b), "left": num(l)}}]
     if title is not None or title_expr is not None:
         o["title"] = [{"properties": {
             "show": lit(True),
@@ -291,8 +307,11 @@ def series_colors(pairs):
     return [{"properties": {"fill": color(c)}, "selector": {"metadata": qref(m)}} for m, c in pairs]
 
 
-def labels_on(c=TXT, size=9, extra=None):
-    p = {"show": lit(True), "color": color(c), "fontSize": num(size)}
+def labels_on(c=TXT, size=9, extra=None, precision=None):
+    # display units None: counts show 1,069 instead of 1K (v1.1 fix #6)
+    p = {"show": lit(True), "color": color(c), "fontSize": num(size), "labelDisplayUnits": num(1)}
+    if precision is not None:
+        p["labelPrecision"] = lit(precision)
     if extra:
         p.update(extra)
     return [{"properties": p}]
@@ -319,7 +338,7 @@ def button(text, text_color, fill=None, link=None, size=10, hover=PANEL, border=
     objs = {
         "icon": [{"properties": {"show": lit(False)}, "selector": {"id": "default"}}],
         "text": [{"properties": {"show": lit(True), "text": lit(text), "fontColor": color(text_color),
-                                 "fontSize": num(size), "fontFamily": lit("Segoe UI")},
+                                 "fontSize": num(size), "fontFamily": lit("Segoe UI Semibold")},
                   "selector": {"id": "default"}}],
         "fill": [{"properties": {"show": lit(fill is not None), "fillColor": color(fill or HEAD),
                                  "transparency": num(0)}, "selector": {"id": "default"}},
@@ -333,8 +352,26 @@ def button(text, text_color, fill=None, link=None, size=10, hover=PANEL, border=
             "drillFilterOtherVisuals": True}
 
 
-def nav_link(page):
-    return {"show": lit(True), "type": lit("PageNavigation"), "navigationSection": lit(page)}
+def page_navigator():
+    """Built-in page navigator as horizontal tabs (v1.1 fix #1: replaces hand-made buttons that showed
+    no text). Hidden pages (Player list, tooltip) are left out by the navigator itself."""
+    st = lambda sid, **p: {"properties": p, "selector": {"id": sid}}
+    return {
+        "visualType": "pageNavigator",
+        "objects": {
+            "layout": [{"properties": {"orientation": num(0)}}],
+            "fill": [st("default", show=lit(True), fillColor=color(HEAD), transparency=num(0)),
+                     st("hover", show=lit(True), fillColor=color(PANEL), transparency=num(0)),
+                     st("selected", show=lit(True), fillColor=color(TAB_ON), transparency=num(0))],
+            "text": [st("default", fontColor=color(TXT2), fontSize=num(9), fontFamily=lit("Segoe UI"),
+                        horizontalAlignment=lit("center")),
+                     st("hover", fontColor=color(TXT)),
+                     st("selected", fontColor=color(TXT), fontFamily=lit("Segoe UI Semibold"))],
+            "outline": [st("default", show=lit(False))],
+        },
+        "visualContainerObjects": vco(panel=False),
+        "drillFilterOtherVisuals": True,
+    }
 
 
 # ---------- layout (1280 x 720, header 64, main padding 12/16, gap 12) ----------
@@ -373,39 +410,49 @@ def grid(rect, cols=3, rows=2):
 # ---------- header + footer ----------
 P1, P2, P3, P4, P5, P6, P7 = ("deposit_journey", "retention", "segments", "healthy_retention",
                               "payment_friction", "player_list", "tooltip_journey")
-TABS = [(P1, "Journey", 76), (P2, "Retention", 86), (P3, "Segments", 86),
-        (P4, "Healthy retention", 132), (P5, "Friction", 72)]
+NO_PAD = (0, 0, 0, 0)
+NAV_X, NAV_W = 200, 600  # page navigator: 5 equal tabs of 120 px
 
 
-def header(pg: Page, current=None, controls=()):
-    """controls: list of (label, label_width, visual, visual_width, visual_height), laid out right to left."""
+def header(pg: Page, nav=True, controls=()):
+    """controls: list of (label, label_width, visual, visual_width, visual_height), laid out right to left.
+    One-line text boxes get padding 0 and enough height, so they never overflow into a scrollbar
+    (the stray white rectangles of v1.1, fix #3)."""
     pg.add("hdr_bar", (0, 0, 1280, 64), shape(HEAD))
-    pg.add("hdr_title", (16, 14, 220, 36), textbox([para(run("Healthy Retention", 15, TXT, bold=True))]))
-    if current is not None:
-        x = 248
-        for page, label, w in TABS:
-            on = page == current
-            pg.add(f"tab_{page}", (x, 16, w, 32),
-                   button(label, TXT if on else TXT2, fill=TAB_ON if on else None, link=nav_link(page)))
-            if on:
-                pg.add("tab_underline", (x, 46, w, 2), shape(BLUE))
-            x += w + 4
+    check_fits("Healthy Retention", 14, 184)
+    pg.add("hdr_title", (16, 12, 184, 40),
+           textbox([para(run("Healthy Retention", 14, TXT, bold=True))], padding=NO_PAD))
+    if nav:
+        for tab in ("Journey", "Retention", "Segments", "Healthy retention", "Friction"):
+            check_fits(tab, 9, NAV_W // 5)
+        pg.add("hdr_nav", (NAV_X, 12, NAV_W, 40), page_navigator())
     xr = 1256
     for i, (label, lw, visual, vw, vh) in enumerate(reversed(controls)):
         xr -= vw
         pg.add(f"hdr_ctl_{i}", (xr, (64 - vh) // 2, vw, vh), visual)
         xr -= lw + 4
-        pg.add(f"hdr_lbl_{i}", (xr, 20, lw, 26), textbox([para(run(label, 10, TXT), align="right")]))
+        check_fits(label, 10, lw)
+        pg.add(f"hdr_lbl_{i}", (xr, 20, lw, 24),
+               textbox([para(run(label, 10, TXT), align="right")], padding=NO_PAD))
         xr -= 16
+    if nav and xr < NAV_X + NAV_W:
+        raise SystemExit(f"Header controls on {pg.name} overlap the page navigator")
 
 
 def footer(pg: Page, left_note=None, right=FOOT_RIGHT):
+    """Footer split sized to the right-hand text, so the left line gets all remaining width (fix #5)."""
     text = SOURCE + (f" · {left_note}" if left_note else "")
-    pg.add("footer_left", (X0, 692, 900, 24), textbox([para(run(text, 8, MUTED))]))
-    pg.add("footer_right", (X0 + 900, 692, W - 900, 24), textbox([para(run(right, 8, MUTED), align="right")]))
+    rw = round(text_px(right, 8)) + 12
+    lw = W - rw
+    check_fits(text, 8, lw)
+    check_fits(right, 8, rw)
+    pg.add("footer_left", (X0, 694, lw, 22), textbox([para(run(text, 8, MUTED))], padding=NO_PAD))
+    pg.add("footer_right", (X0 + lw, 694, rw, 22),
+           textbox([para(run(right, 8, MUTED), align="right")], padding=NO_PAD))
 
 
 def dropdown(field, display):
+    # 40 px tall with no vertical padding, so the selected value is fully visible (fix #4)
     return {
         "visualType": "slicer",
         "query": {"queryState": {"Values": {"projections": [proj(field, display)]}}},
@@ -413,13 +460,13 @@ def dropdown(field, display):
                     "header": [{"properties": {"show": lit(False)}}],
                     "items": [{"properties": {"fontColor": color(TXT), "background": color(BG),
                                               "textSize": num(10)}}]},
-        "visualContainerObjects": vco(fill=BG, border_color=TXT2, radius=2),
+        "visualContainerObjects": vco(fill=BG, border_color=TXT2, radius=2, padding=(0, 4, 0, 4)),
         "drillFilterOtherVisuals": True,
     }
 
 
 COHORT = col("dim_player", "cohort_month")
-COHORT_CTL = ("Cohort:", 52, dropdown(COHORT, "Cohort"), 170, 32)
+COHORT_CTL = ("Cohort:", 58, dropdown(COHORT, "Cohort"), 150, 40)
 
 
 # ---------- KPI cards and panels ----------
@@ -503,8 +550,8 @@ def step(name):
 
 
 # ---------------- Page 1: Deposit journey ----------------
-pg = Page(P1, "Deposit journey")
-header(pg, P1, [COHORT_CTL])
+pg = Page(P1, "Journey")  # tab name (fix #1)
+header(pg, controls=[COHORT_CTL])
 main, kpi_area = top()
 pg.add("journey_funnel", main, chart(
     "funnel",
@@ -556,7 +603,7 @@ save_page(pg, page_filters(P1, ((2019, 5), (2019, 12))))
 
 # ---------------- Page 2: Retention ----------------
 pg = Page(P2, "Retention")
-header(pg, P2, [COHORT_CTL, ("Segment:", 60, dropdown(SEG, "Segment"), 140, 32)])
+header(pg, controls=[COHORT_CTL, ("Segment:", 72, dropdown(SEG, "Segment"), 130, 40)])
 main, kpi_area = top(1.25, 1.0)
 gradient = lambda lo, hi: {"solid": {"color": {"expr": {"FillRule": {
     "Input": RET,
@@ -565,6 +612,7 @@ gradient = lambda lo, hi: {"solid": {"color": {"expr": {"FillRule": {
         "max": {"color": {"Literal": {"Value": f"'{hi}'"}}},
         "nullColoringStrategy": {"strategy": {"Literal": {"Value": "'asZero'"}}}}}}}}}}
 cf_sel = {"data": [{"dataViewWildcard": {"matchingOption": 1}}], "metadata": qref(RET)}
+HEAT_MIN, HEAT_MAX = "#2A3E58", "#2C5FBD"  # contrast with #E8EEF2: 9.3:1 and 5.2:1
 pg.add("retention_matrix", main, chart(
     "pivotTable",
     {"Rows": [proj(COHORT, "Cohort")],
@@ -572,8 +620,15 @@ pg.add("retention_matrix", main, chart(
      "Values": [proj(RET)]},
     sort=[{"field": COHORT, "direction": "Ascending"}],
     objects={
-        "values": [{"properties": {"backColor": gradient(INSET, BLUE)}, "selector": cf_sel},
-                   {"properties": {"fontColor": gradient(TXT, "#0F1820")}, "selector": cf_sel}],
+        # one text colour (#E8EEF2) on a gradient that keeps >= 5.2:1 contrast at its lightest (fix #8)
+        "values": [{"properties": {"backColor": gradient(HEAT_MIN, HEAT_MAX)}, "selector": cf_sel},
+                   {"properties": {"fontColorPrimary": color(TXT), "fontColorSecondary": color(TXT),
+                                   "fontSize": num(10)}}],
+        # fixed column widths so the 9 months fill the panel (fix #7)
+        "columnHeaders": [{"properties": {"autoSizeColumnWidth": lit(False), "fontSize": num(9)}}],
+        "rowHeaders": [{"properties": {"fontSize": num(10)}}],
+        "columnWidth": [{"properties": {"value": num(62)}, "selector": {"metadata": qref(RET)}},
+                        {"properties": {"value": num(86)}, "selector": {"metadata": qref(COHORT)}}],
         "subTotals": [{"properties": {"rowSubtotals": lit(False), "columnSubtotals": lit(False)}}],
     },
     title="Do players come back? Share of each cohort active k months later",
@@ -596,10 +651,7 @@ pg.add("retention_m1_by_cohort", b1, chart(
         **axes(categorical=True),
         "dataPoint": [{"properties": {"fill": color(BLUE)}}],
         "labels": labels_on(NEUTRAL, 8),
-        "averageLine": [{"properties": {"show": lit(True), "displayName": lit("Average"),
-                                        "lineColor": color(YELLOW), "style": lit("dashed"),
-                                        "dataLabelShow": lit(True)},
-                         "selector": {"metadata": qref(M1), "id": "1"}}],
+        # average line: Desktop strips a generated one, so it is added by hand in the Analytics pane (fix #9)
     },
     title="Month-1 retention by cohort",
 ))
@@ -619,7 +671,7 @@ save_page(pg, page_filters(P2, ((2019, 5), (2020, 1))))
 
 # ---------------- Page 3: Segments ----------------
 pg = Page(P3, "Segments")
-header(pg, P3, [("Player type:", 80, dropdown(PTYPE, "Player type"), 120, 32), COHORT_CTL])
+header(pg, controls=[("Player type:", 94, dropdown(PTYPE, "Player type"), 110, 40), COHORT_CTL])
 main, kpi_area = top()
 SM = col("Segment Measure", "Segment Measure")
 SMF = col("Segment Measure", "Segment Measure Fields")
@@ -631,8 +683,10 @@ pg.add("segment_chart", main, chart(
      "Y": [proj(meas("% of Deposit Money"), "Share of money")]},
     field_params={"Y": [{"parameterExpr": SM, "index": 0, "length": 1}]},
     sort=[{"field": meas("% of Deposit Money"), "direction": "Descending"}],
+    # label chips (#36454F) keep labels readable inside or outside any bar, incl. yellow (fix #12)
     objects={**axes(), "dataPoint": cat_colors(SEG, SEG_COLORS, default=BLUE),
-             "labels": labels_on(TXT, 9)},
+             "labels": labels_on(TXT, 9, extra={"enableBackground": lit(True), "backgroundColor": color(BORDER),
+                                                "backgroundTransparency": num(0)})},
     title_expr=meas("Segment Chart Title"),
 ))
 # measure buttons sit on the chart, under its title
@@ -688,13 +742,16 @@ def stacked(measure, title):
         "hundredPercentStackedBarChart",
         {"Series": [proj(SEG, "Segment")], "Y": [proj(meas(measure))]},
         objects={**axes(cat_show=False), "dataPoint": cat_colors(SEG, SEG_COLORS),
-                 "legend": legend(False), "labels": labels_on(DARK_LABEL, 8)},
+                 "legend": legend(False), "labels": labels_on(DARK_LABEL, 8, precision=1)},
         title=title, title_size=9, panel=False,
     )
 
 
-pg.add("share_players_bar", (bx + 8, by + 48, bw - 16, 96), stacked("Players", "Share of players"))
-pg.add("share_money_bar", (bx + 8, by + 152, bw - 16, 96), stacked("Deposit Amount", "Share of deposit money"))
+# share measures so labels read 37.1% etc. with 1 decimal (fix #10); segment order follows the
+# column's sort order (alphabetical until the model gets a sort-by column)
+pg.add("share_players_bar", (bx + 8, by + 48, bw - 16, 96), stacked("% of Players", "Share of players"))
+pg.add("share_money_bar", (bx + 8, by + 152, bw - 16, 96),
+       stacked("% of Deposit Money", "Share of deposit money"))
 footer(pg, "Mar 2019 – Feb 2020", right=PROXY)
 save_page(pg, page_filters(P3, new=False, extra=[f_in("dim_player", "deposit_segment", ["No deposit"], P3,
                                                       exclude=True)]))
@@ -702,25 +759,31 @@ save_page(pg, page_filters(P3, new=False, extra=[f_in("dim_player", "deposit_seg
 # ---------------- Page 4: Healthy retention ----------------
 pg = Page(P4, "Healthy retention")
 HT = col("HI Threshold", "HI Threshold")
+# Threshold slicer copied from the one built in Power BI Desktop (v1.1.1, fix #11). Desktop stores the
+# value as a double ("D", not "L") in two places: data.numericStart and the Equal filter. The v1.1
+# version used "1038L" and no numericStart, so the box showed 500 on open.
+# Desktop's saved file held 500D; the value here is the intended default, matching the
+# SELECTEDVALUE fallback in [HI Threshold Value].
+HI_DEFAULT = "1038D"
 threshold = {
     "visualType": "slicer",
-    "query": {"queryState": {"Values": {"projections": [proj(HT)]}}},
+    "query": {"queryState": {"Values": {"projections": [
+        {**proj(HT), "active": True}]}}},
     "objects": {
-        "data": [{"properties": {"mode": lit("Single")}}],
+        "data": [{"properties": {"numericStart": {"expr": {"Literal": {"Value": HI_DEFAULT}}},
+                                 "mode": lit("Single")}}],
+        "slider": [{"properties": {"show": lit(False)}}],
         "header": [{"properties": {"show": lit(False)}}],
-        "slider": [{"properties": {"color": color(YELLOW)}}],
-        "numericInputStyle": [{"properties": {"fontColor": color(YELLOW), "background": color(HEAD),
-                                              "textSize": num(10)}}],
         "general": [{"properties": {"filter": {"filter": {
             "Version": 2,
             "From": [{"Name": "h", "Entity": "HI Threshold", "Type": 0}],
             "Where": [{"Condition": {"Comparison": {"ComparisonKind": 0, "Left": src_col("h", "HI Threshold"),
-                                                    "Right": {"Literal": {"Value": "1038L"}}}}}]}}}}],
+                                                    "Right": {"Literal": {"Value": HI_DEFAULT}}}}}]}}}}],
     },
-    "visualContainerObjects": vco(panel=False),
+    "visualContainerObjects": {"background": [{"properties": {"show": lit(False)}}]},
     "drillFilterOtherVisuals": True,
 }
-header(pg, P4, [("Threshold:", 70, threshold, 190, 48), ("Cohort:", 52, dropdown(COHORT, "Cohort"), 140, 32)])
+header(pg, controls=[("Threshold:", 80, threshold, 148, 48), ("Cohort:", 58, dropdown(COHORT, "Cohort"), 130, 40)])
 main, kpi_area = top()
 GR = [meas("Group Retention M1"), meas("Group Retention M2"), meas("Group Retention M3")]
 pg.add("group_retention", main, chart(
@@ -773,15 +836,17 @@ footer(pg, "Power BI recalculates when the slider moves", right=PROXY)
 save_page(pg, page_filters(P4, ((2019, 5), (2019, 11))))
 
 # ---------------- Page 5: Payment friction ----------------
-pg = Page(P5, "Payment friction")
-header(pg, P5, [COHORT_CTL])
+pg = Page(P5, "Friction")  # tab name (fix #1)
+header(pg, controls=[COHORT_CTL])
 main, kpi_area = top()
 pg.add("m1_by_decline_group", main, chart(
     "clusteredBarChart",
     {"Category": [proj(DECL, "Declines in first 30 days")], "Y": [proj(M1)],
      "Tooltips": [proj(meas("Players"))]},
     sort=[{"field": DECL, "direction": "Ascending"}],
-    objects={**axes(), "dataPoint": cat_colors(DECL, DECL_COLORS, default=BLUE), "labels": labels_on(TXT, 9)},
+    # dark labels inside every bar: #17212A beats white on all palette colours (fix #12)
+    objects={**axes(), "dataPoint": cat_colors(DECL, DECL_COLORS, default=BLUE),
+             "labels": labels_on(DARK_LABEL, 9, extra={"labelPosition": lit("InsideEnd")})},
     title="Do declined payments push players away?", subtitle_expr=meas("Title Friction"),
 ), filters=[f_in("dim_player", "Decline Group", ["No funding attempt"], "bars", exclude=True)])
 DECLINED = lambda: [f_in("dim_player", "first_funding_attempt_status", ["DECLINED"], "kpi")]
@@ -821,15 +886,15 @@ for i, ((x, w), (top_c, head, body, act_c, action)) in enumerate(zip(boxes, mean
         para(run(action, 9, act_c, bold=True)),
     ], panel=True, fill=INSET, radius=2))
     pg.add(f"meaning_{i + 1}_bar", (x, by + 52, w, 3), shape(top_c))
-footer(pg, "No decline reason in the data · Small decline groups: read the pattern, not the decimals · "
-           "Right-click a bar → Drill through → Player list")
+footer(pg, "No decline reason in the data · Small groups: read the pattern · "
+           "Right-click a bar → Drill through")
 save_page(pg, page_filters(P5, ((2019, 5), (2020, 1)),
                            extra=[f_not_blank("dim_player", "first_funding_attempt_status", P5)]))
 
 # ---------------- Page 6: Player list (drill-through, hidden) ----------------
 pg = Page(P6, "Player list")
-header(pg)
-pg.add("back", (1150, 16, 106, 32), button("← Back", TXT, fill=TAB_ON, border=BORDER,
+header(pg, nav=False)
+pg.add("back", (1150, 12, 106, 40), button("← Back", TXT, fill=TAB_ON, border=BORDER,
                                            link={"show": lit(True), "type": lit("Back")}))
 dp = "dim_player"
 pg.add("player_table", (X0, TOP_Y, W, 612), chart("tableEx", {"Values": [

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "hdr_lbl_0",
   "position": {
-    "x": 1030,
+    "x": 1044,
     "y": 20,
-    "z": 10000,
-    "height": 26,
-    "width": 52,
-    "tabOrder": 10000
+    "z": 5000,
+    "height": 24,
+    "width": 58,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "textbox",
@@ -35,6 +35,40 @@
       ]
     },
     "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {

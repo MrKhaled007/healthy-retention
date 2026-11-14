@@ -187,6 +187,9 @@ table dim_player
 		lineageTag: 83af7e07-2e2f-4a11-8fab-fc42f3f1b99d
 		summarizeBy: none
 		sourceColumn: deposit_segment
+		sortByColumn: deposit_segment_order
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
@@ -275,6 +278,15 @@ table dim_player
 		formatString: 0
 		lineageTag: 9fb4453a-9f20-4cab-8a39-f056a1cacbcd
 		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column deposit_segment_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 11162a73-09a9-42c2-9742-74f51975190d
+		summarizeBy: sum
+		sourceColumn: deposit_segment_order
 
 		annotation SummarizationSetBy = Automatic
 

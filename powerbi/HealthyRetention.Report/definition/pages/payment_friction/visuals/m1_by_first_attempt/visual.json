@@ -4,10 +4,10 @@
   "position": {
     "x": 16,
     "y": 416,
-    "z": 18000,
+    "z": 13000,
     "height": 272,
     "width": 412,
-    "tabOrder": 18000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -261,6 +261,13 @@
               "expr": {
                 "Literal": {
                   "Value": "10D"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }

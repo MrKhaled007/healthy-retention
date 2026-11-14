@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "hdr_ctl_1",
+  "name": "397b561015b61080c1e0",
   "position": {
-    "x": 854,
-    "y": 8,
-    "z": 11000,
-    "height": 48,
-    "width": 190,
-    "tabOrder": 11000
+    "x": 895.450643776824,
+    "y": 0,
+    "z": 19001,
+    "height": 52.188841201716734,
+    "width": 183.11874105865522,
+    "tabOrder": 19001
   },
   "visual": {
     "visualType": "slicer",
@@ -41,7 +41,7 @@
             "numericStart": {
               "expr": {
                 "Literal": {
-                  "Value": "2000D"
+                  "Value": "500D"
                 }
               }
             },
@@ -55,7 +55,7 @@
           }
         }
       ],
-      "header": [
+      "slider": [
         {
           "properties": {
             "show": {
@@ -68,52 +68,13 @@
           }
         }
       ],
-      "slider": [
+      "header": [
         {
           "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E5E067'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "numericInputStyle": [
-        {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E5E067'"
-                    }
-                  }
-                }
-              }
-            },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#17212A'"
-                    }
-                  }
-                }
-              }
-            },
-            "textSize": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "false"
                 }
               }
             }
@@ -150,7 +111,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "2000D"
+                            "Value": "500D"
                           }
                         }
                       }
@@ -164,46 +125,7 @@
       ]
     },
     "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "background": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dropShadow": [
         {
           "properties": {
             "show": {

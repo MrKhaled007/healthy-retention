@@ -4,10 +4,10 @@
   "position": {
     "x": 16,
     "y": 76,
-    "z": 13000,
+    "z": 8000,
     "height": 328,
     "width": 562,
-    "tabOrder": 13000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -43,12 +43,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "% of Deposit Money"
+                  "Property": "% of Players"
                 }
               },
-              "queryRef": "_Measures.% of Deposit Money",
-              "nativeQueryRef": "% of Deposit Money",
-              "displayName": "Share of money"
+              "queryRef": "_Measures.% of Players",
+              "nativeQueryRef": "Share of players",
+              "displayName": "Share of players"
             }
           ],
           "fieldParameters": [
@@ -68,23 +68,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "_Measures"
-                  }
-                },
-                "Property": "% of Deposit Money"
-              }
-            },
-            "direction": "Descending"
-          }
-        ]
       }
     },
     "objects": {
@@ -374,6 +357,38 @@
               "expr": {
                 "Literal": {
                   "Value": "9D"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "enableBackground": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "backgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#36454F'"
+                    }
+                  }
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

@@ -3,11 +3,11 @@
   "name": "footer_left",
   "position": {
     "x": 16,
-    "y": 692,
-    "z": 24000,
-    "height": 24,
-    "width": 900,
-    "tabOrder": 24000
+    "y": 694,
+    "z": 19000,
+    "height": 22,
+    "width": 1001,
+    "tabOrder": 19000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Source: Ghaharian et al. (2023), Mendeley Data, CC BY 4.0 · No decline reason in the data · Small decline groups: read the pattern, not the decimals · Right-click a bar → Drill through → Player list",
+                    "value": "Source: Ghaharian et al. (2023), Mendeley Data, CC BY 4.0 · No decline reason in the data · Small groups: read the pattern · Right-click a bar → Drill through",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "8pt",
@@ -35,6 +35,40 @@
       ]
     },
     "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {

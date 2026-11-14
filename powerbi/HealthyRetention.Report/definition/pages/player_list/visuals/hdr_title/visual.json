@@ -3,10 +3,10 @@
   "name": "hdr_title",
   "position": {
     "x": 16,
-    "y": 14,
+    "y": 12,
     "z": 2000,
-    "height": 36,
-    "width": 220,
+    "height": 40,
+    "width": 184,
     "tabOrder": 2000
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "value": "Healthy Retention",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "15pt",
+                      "fontSize": "14pt",
                       "color": "#E8EEF2"
                     }
                   }
@@ -35,6 +35,40 @@
       ]
     },
     "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {

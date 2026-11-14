@@ -224,5 +224,13 @@ select
         when not active_m1                          then 5
         when not active_m2                          then 6
         else                                             7
-    end                                                         as journey_stage
+    end                                                         as journey_stage,
+    -- Display order for deposit_segment in Power BI (sort-by column)
+    case deposit_segment
+        when 'No deposit'     then 0
+        when 'One-and-done'   then 1
+        when 'Light'          then 2
+        when 'Regular'        then 3
+        when 'High-intensity' then 4
+    end                                                         as deposit_segment_order
 from combined

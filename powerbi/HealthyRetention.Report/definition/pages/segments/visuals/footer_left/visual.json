@@ -3,11 +3,11 @@
   "name": "footer_left",
   "position": {
     "x": 16,
-    "y": 692,
-    "z": 25000,
-    "height": 24,
-    "width": 900,
-    "tabOrder": 25000
+    "y": 694,
+    "z": 20000,
+    "height": 22,
+    "width": 907,
+    "tabOrder": 20000
   },
   "visual": {
     "visualType": "textbox",
@@ -35,6 +35,40 @@
       ]
     },
     "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {

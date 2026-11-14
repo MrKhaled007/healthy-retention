@@ -4,10 +4,10 @@
   "position": {
     "x": 860,
     "y": 568,
-    "z": 24000,
+    "z": 19000,
     "height": 96,
     "width": 396,
-    "tabOrder": 24000
+    "tabOrder": 19000
   },
   "visual": {
     "visualType": "hundredPercentStackedBarChart",
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Deposit Amount"
+                  "Property": "% of Deposit Money"
                 }
               },
-              "queryRef": "_Measures.Deposit Amount",
-              "nativeQueryRef": "Deposit Amount"
+              "queryRef": "_Measures.% of Deposit Money",
+              "nativeQueryRef": "% of Deposit Money"
             }
           ]
         }
@@ -370,6 +370,20 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
                 }
               }
             }

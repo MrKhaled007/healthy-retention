@@ -4,10 +4,10 @@
   "position": {
     "x": 860,
     "y": 464,
-    "z": 23000,
+    "z": 18000,
     "height": 96,
     "width": 396,
-    "tabOrder": 23000
+    "tabOrder": 18000
   },
   "visual": {
     "visualType": "hundredPercentStackedBarChart",
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Players"
+                  "Property": "% of Players"
                 }
               },
-              "queryRef": "_Measures.Players",
-              "nativeQueryRef": "Players"
+              "queryRef": "_Measures.% of Players",
+              "nativeQueryRef": "% of Players"
             }
           ]
         }
@@ -370,6 +370,20 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
                 }
               }
             }
