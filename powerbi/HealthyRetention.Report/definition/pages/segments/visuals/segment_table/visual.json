@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "segment_table",
   "position": {
-    "x": 736,
-    "y": 252,
-    "z": 13000,
-    "height": 348,
-    "width": 520,
-    "tabOrder": 13000
+    "x": 16,
+    "y": 416,
+    "z": 21000,
+    "height": 272,
+    "width": 824,
+    "tabOrder": 21000
   },
   "visual": {
     "visualType": "tableEx",
@@ -56,7 +56,8 @@
                 }
               },
               "queryRef": "_Measures.% of Players",
-              "nativeQueryRef": "% of Players"
+              "nativeQueryRef": "% of Players",
+              "displayName": "% players"
             },
             {
               "field": {
@@ -70,7 +71,8 @@
                 }
               },
               "queryRef": "_Measures.Deposit Amount",
-              "nativeQueryRef": "Deposit Amount"
+              "nativeQueryRef": "Deposit Amount",
+              "displayName": "Deposit money"
             },
             {
               "field": {
@@ -84,7 +86,8 @@
                 }
               },
               "queryRef": "_Measures.% of Deposit Money",
-              "nativeQueryRef": "% of Deposit Money"
+              "nativeQueryRef": "% of Deposit Money",
+              "displayName": "% money"
             },
             {
               "field": {
@@ -99,10 +102,27 @@
               },
               "queryRef": "_Measures.Median Monthly Deposit",
               "nativeQueryRef": "Median Monthly Deposit",
-              "displayName": "Median $/month"
+              "displayName": "Median $/mo"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Deposit Amount"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "drillFilterOtherVisuals": true,
@@ -120,7 +140,190 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Segment summary (right-click a segment to drill through to players)'"
+                  "Value": "'Segment profile'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E8EEF2'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#36454F'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right-click a segment → Drill through → Player list · Days/mo and Avg declines columns wait for their measures'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9DB0BE'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#26333E'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#36454F'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "back",
   "position": {
-    "x": 1136,
-    "y": 56,
-    "z": 6000,
-    "height": 28,
-    "width": 120,
-    "tabOrder": 6000
+    "x": 1150,
+    "y": 16,
+    "z": 3000,
+    "height": 32,
+    "width": 106,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "actionButton",
@@ -50,7 +50,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F4F2EC'"
+                      "Value": "'#E8EEF2'"
                     }
                   }
                 }
@@ -66,7 +66,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Segoe UI Semibold'"
+                  "Value": "'Segoe UI'"
                 }
               }
             }
@@ -91,7 +91,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#25252D'"
+                      "Value": "'#2F4050'"
                     }
                   }
                 }
@@ -107,6 +107,38 @@
           },
           "selector": {
             "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#26333E'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "hover"
           }
         }
       ],
@@ -125,7 +157,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#34343E'"
+                      "Value": "'#36454F'"
                     }
                   }
                 }
@@ -166,6 +198,19 @@
         }
       ],
       "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
         {
           "properties": {
             "show": {

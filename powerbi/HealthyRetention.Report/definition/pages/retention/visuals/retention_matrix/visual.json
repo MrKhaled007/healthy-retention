@@ -2,37 +2,17 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "retention_matrix",
   "position": {
-    "x": 224,
-    "y": 260,
+    "x": 16,
+    "y": 76,
     "z": 13000,
-    "height": 340,
-    "width": 640,
+    "height": 328,
+    "width": 687,
     "tabOrder": 13000
   },
   "visual": {
     "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Columns": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fct_player_month"
-                    }
-                  },
-                  "Property": "months_since_first_seen"
-                }
-              },
-              "queryRef": "fct_player_month.months_since_first_seen",
-              "nativeQueryRef": "months_since_first_seen",
-              "active": true,
-              "displayName": "Months since first seen"
-            }
-          ]
-        },
         "Rows": {
           "projections": [
             {
@@ -48,8 +28,26 @@
               },
               "queryRef": "dim_player.cohort_month",
               "nativeQueryRef": "cohort_month",
-              "active": true,
               "displayName": "Cohort"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_player_month"
+                    }
+                  },
+                  "Property": "months_since_first_seen"
+                }
+              },
+              "queryRef": "fct_player_month.months_since_first_seen",
+              "nativeQueryRef": "months_since_first_seen",
+              "displayName": "Months since first seen"
             }
           ]
         },
@@ -90,6 +88,7 @@
         ]
       }
     },
+    "drillFilterOtherVisuals": true,
     "objects": {
       "values": [
         {
@@ -114,14 +113,14 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#2A2720'"
+                                "Value": "'#222D36'"
                               }
                             }
                           },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#F2C66D'"
+                                "Value": "'#4C8DF6'"
                               }
                             }
                           },
@@ -173,14 +172,14 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#F4F2EC'"
+                                "Value": "'#E8EEF2'"
                               }
                             }
                           },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#1C1C22'"
+                                "Value": "'#0F1820'"
                               }
                             }
                           },
@@ -246,20 +245,207 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Retention % by cohort and month since first seen (months 1–9)'"
+                  "Value": "'Do players come back? Share of each cohort active k months later'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E8EEF2'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#36454F'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Title Retention"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9DB0BE'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#26333E'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#36454F'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "matrix_f06",
+        "name": "matrix_f08",
         "field": {
           "Column": {
             "Expression": {

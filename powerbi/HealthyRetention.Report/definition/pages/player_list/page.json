@@ -9,7 +9,6 @@
     "filters": [
       {
         "name": "drill_deposit_segment",
-        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -21,11 +20,11 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "Drillthrough",
+        "ordinal": 0
       },
       {
         "name": "drill_decline_group",
-        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -37,11 +36,11 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "Drillthrough",
+        "ordinal": 1
       },
       {
-        "name": "player_list_f29",
-        "ordinal": 2,
+        "name": "player_list_f32",
         "field": {
           "Column": {
             "Expression": {
@@ -92,14 +91,18 @@
             }
           ]
         },
-        "howCreated": "User"
+        "howCreated": "User",
+        "ordinal": 2
       }
     ],
     "filterSortOrder": "Custom"
   },
+  "type": "Drillthrough",
+  "visibility": "HiddenInViewMode",
   "pageBinding": {
     "name": "binding_player_list",
     "type": "Drillthrough",
+    "referenceScope": "Default",
     "parameters": [
       {
         "name": "param_deposit_segment",
@@ -130,7 +133,5 @@
         }
       }
     ]
-  },
-  "visibility": "HiddenInViewMode",
-  "type": "Drillthrough"
+  }
 }

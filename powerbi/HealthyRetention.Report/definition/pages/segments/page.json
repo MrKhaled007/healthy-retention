@@ -8,7 +8,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "segments_f13",
+        "name": "segments_f17",
         "field": {
           "Column": {
             "Expression": {
@@ -63,7 +63,7 @@
         "ordinal": 0
       },
       {
-        "name": "segments_f12",
+        "name": "segments_f16",
         "field": {
           "Column": {
             "Expression": {

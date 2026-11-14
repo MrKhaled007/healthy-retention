@@ -8,7 +8,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "deposit_journey_f03",
+        "name": "deposit_journey_f05",
         "field": {
           "Column": {
             "Expression": {
@@ -63,7 +63,7 @@
         "ordinal": 0
       },
       {
-        "name": "deposit_journey_f04",
+        "name": "deposit_journey_f06",
         "field": {
           "Column": {
             "Expression": {
@@ -118,7 +118,7 @@
         "ordinal": 1
       },
       {
-        "name": "deposit_journey_f05",
+        "name": "deposit_journey_f07",
         "field": {
           "Column": {
             "Expression": {

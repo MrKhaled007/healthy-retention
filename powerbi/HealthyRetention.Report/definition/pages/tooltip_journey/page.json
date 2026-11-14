@@ -8,8 +8,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "tooltip_journey_f30",
-        "ordinal": 0,
+        "name": "tooltip_journey_f33",
         "field": {
           "Column": {
             "Expression": {
@@ -60,11 +59,11 @@
             }
           ]
         },
-        "howCreated": "User"
+        "howCreated": "User",
+        "ordinal": 0
       },
       {
-        "name": "tooltip_journey_f31",
-        "ordinal": 1,
+        "name": "tooltip_journey_f34",
         "field": {
           "Column": {
             "Expression": {
@@ -115,11 +114,11 @@
             }
           ]
         },
-        "howCreated": "User"
+        "howCreated": "User",
+        "ordinal": 1
       },
       {
-        "name": "tooltip_journey_f32",
-        "ordinal": 2,
+        "name": "tooltip_journey_f35",
         "field": {
           "Column": {
             "Expression": {
@@ -219,16 +218,17 @@
             }
           ]
         },
-        "howCreated": "User"
+        "howCreated": "User",
+        "ordinal": 2
       }
     ],
     "filterSortOrder": "Custom"
   },
+  "type": "Tooltip",
+  "visibility": "HiddenInViewMode",
   "pageBinding": {
     "name": "binding_tooltip_journey",
     "type": "Tooltip",
-    "parameters": []
-  },
-  "visibility": "HiddenInViewMode",
-  "type": "Tooltip"
+    "referenceScope": "Default"
+  }
 }

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "slicer_segment_measure",
   "position": {
-    "x": 224,
-    "y": 188,
-    "z": 11000,
-    "height": 52,
-    "width": 520,
-    "tabOrder": 11000
+    "x": 32,
+    "y": 116,
+    "z": 14000,
+    "height": 34,
+    "width": 420,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "advancedSlicerVisual",
@@ -87,7 +87,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''_Measures''[% of Players]'"
+                                "Value": "'''_Measures''[% of Deposit Money]'"
                               }
                             }
                           ]
@@ -115,7 +115,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''_Measures''[% of Players]'"
+                                      "Value": "'''_Measures''[% of Deposit Money]'"
                                     }
                                   }
                                 ]
@@ -139,7 +139,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Share of players"
+                            "0": "Share of money"
                           }
                         ]
                       }
@@ -180,6 +180,19 @@
         }
       ],
       "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
         {
           "properties": {
             "show": {
