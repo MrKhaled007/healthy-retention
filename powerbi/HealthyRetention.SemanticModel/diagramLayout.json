@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 27.654456347923734,
+        "x": 0,
         "y": 0
       },
       "nodes": [
@@ -101,8 +101,8 @@
         },
         {
           "location": {
-            "x": 1593.3858274942202,
-            "y": 376.76709026206584
+            "x": 1821.6977973469211,
+            "y": 652.99638712088927
           },
           "nodeIndex": "HI Threshold",
           "nodeLineageTag": "641e7735-220a-498f-9e86-62794dbd17b7",
@@ -127,8 +127,8 @@
         },
         {
           "location": {
-            "x": 1334.6336962039427,
-            "y": 388.88369614340439
+            "x": 1161.2857190935586,
+            "y": 362.10636634586535
           },
           "nodeIndex": "Segment Measure",
           "nodeLineageTag": "b3914d5b-cde1-4f06-b83c-388d35c5ce3a",
@@ -137,10 +137,34 @@
             "width": 234
           },
           "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1417.597065247714,
+            "y": 364.88369614340439
+          },
+          "nodeIndex": "dq_known_issues",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1701.597065247714,
+            "y": 376.88369614340439
+          },
+          "nodeIndex": "dq_layer_counts",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 79.553182037699813,
+      "zoomValue": 70.955543900968848,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

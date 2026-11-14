@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "a872e67aa190c74b3603",
+  "position": {
+    "x": 747.27272727272725,
+    "y": 128.18181818181816,
+    "z": 7000,
+    "height": 361.81818181818181,
+    "width": 532.72727272727263,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dq_layer_counts"
+                    }
+                  },
+                  "Property": "brand"
+                }
+              },
+              "queryRef": "dq_layer_counts.brand",
+              "nativeQueryRef": "brand",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dq_layer_counts"
+                    }
+                  },
+                  "Property": "layer"
+                }
+              },
+              "queryRef": "dq_layer_counts.layer",
+              "nativeQueryRef": "layer",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dq_layer_counts"
+                        }
+                      },
+                      "Property": "row_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dq_layer_counts.row_count)",
+              "nativeQueryRef": "Sum of row_count"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Rows at each layer: nothing added, only cleaned'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

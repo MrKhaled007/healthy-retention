@@ -1,0 +1,51 @@
+table dq_layer_counts
+	lineageTag: aa946f7f-d282-4ed0-84e1-4b5d2252fd13
+
+	column layer_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 0858a039-9716-4333-aae7-448e85f5afa3
+		summarizeBy: sum
+		sourceColumn: layer_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column layer
+		dataType: string
+		lineageTag: 981be1cd-559e-44f7-b35a-0f959c013fa2
+		summarizeBy: none
+		sourceColumn: layer
+		sortByColumn: layer_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: 3e2bcc57-de63-4421-8765-03e764fa5c72
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 03dcf81c-a4aa-44ee-bbbf-e213e61d7238
+		summarizeBy: sum
+		sourceColumn: row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dq_layer_counts = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "healthy_retention"),
+				    analytics_dq_layer_counts = Source{[Schema="analytics",Item="dq_layer_counts"]}[Data]
+				in
+				    analytics_dq_layer_counts
+
+	changedProperty = Name
+

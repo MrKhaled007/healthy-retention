@@ -4,10 +4,10 @@
   "position": {
     "x": 1048,
     "y": 76,
-    "z": 11000,
+    "z": 9000,
     "height": 158,
     "width": 216,
-    "tabOrder": 11000
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "card",
@@ -35,7 +35,6 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "labels": [
         {
@@ -266,12 +265,14 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
         "name": "kpi_gap_f1",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -322,8 +323,7 @@
             }
           ]
         },
-        "howCreated": "User",
-        "ordinal": 0
+        "howCreated": "User"
       }
     ]
   }

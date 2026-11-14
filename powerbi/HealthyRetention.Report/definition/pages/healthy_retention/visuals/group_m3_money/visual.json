@@ -4,10 +4,10 @@
   "position": {
     "x": 436,
     "y": 416,
-    "z": 16000,
+    "z": 14000,
     "height": 272,
     "width": 408,
-    "tabOrder": 16000
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "hundredPercentStackedBarChart",
@@ -51,7 +51,6 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "categoryAxis": [
         {
@@ -460,6 +459,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

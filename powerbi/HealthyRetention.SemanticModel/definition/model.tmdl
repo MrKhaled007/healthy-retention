@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["dim_brand","dim_date","dim_player","fct_player_month","fct_transactions","_Measures","Journey Steps","Spend Group"]
+annotation PBI_QueryOrder = ["dim_brand","dim_date","dim_player","fct_player_month","fct_transactions","_Measures","Journey Steps","Spend Group","dq_known_issues","dq_layer_counts"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -39,6 +39,8 @@ ref table 'Journey Steps'
 ref table 'HI Threshold'
 ref table 'Spend Group'
 ref table 'Segment Measure'
+ref table dq_known_issues
+ref table dq_layer_counts
 
 ref cultureInfo en-US
 

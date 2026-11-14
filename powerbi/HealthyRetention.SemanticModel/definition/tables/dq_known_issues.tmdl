@@ -1,0 +1,58 @@
+table dq_known_issues
+	lineageTag: 10ab10e8-2a75-4d1a-a859-724065e46206
+
+	column issue_order
+		dataType: int64
+		formatString: 0
+		lineageTag: e41f8fe3-a033-4c07-9880-33c0e27b482d
+		summarizeBy: sum
+		sourceColumn: issue_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue
+		dataType: string
+		lineageTag: b0d23273-924e-47e4-b100-4e17aa0e3a6b
+		summarizeBy: none
+		sourceColumn: issue
+		sortByColumn: issue_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column how_found
+		dataType: string
+		lineageTag: 922ca730-48eb-4297-b991-b24770fd1287
+		summarizeBy: none
+		sourceColumn: how_found
+
+		annotation SummarizationSetBy = Automatic
+
+	column how_handled
+		dataType: string
+		lineageTag: 85db4067-c1dc-4100-8c7b-fe1eef66225c
+		summarizeBy: none
+		sourceColumn: how_handled
+
+		annotation SummarizationSetBy = Automatic
+
+	column decision
+		dataType: string
+		lineageTag: ee047c18-3abc-4421-9ed1-66f47af98f36
+		summarizeBy: none
+		sourceColumn: decision
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dq_known_issues = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "healthy_retention"),
+				    analytics_dq_known_issues = Source{[Schema="analytics",Item="dq_known_issues"]}[Data]
+				in
+				    analytics_dq_known_issues
+
+	changedProperty = Name
+

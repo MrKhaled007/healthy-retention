@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "6bf7f6477c779128e147",
+  "position": {
+    "x": 0,
+    "y": 128.18181818181816,
+    "z": 8000,
+    "height": 361.81818181818181,
+    "width": 747.27272727272725,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dq_known_issues"
+                    }
+                  },
+                  "Property": "issue"
+                }
+              },
+              "queryRef": "dq_known_issues.issue",
+              "nativeQueryRef": "issue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dq_known_issues"
+                    }
+                  },
+                  "Property": "how_found"
+                }
+              },
+              "queryRef": "dq_known_issues.how_found",
+              "nativeQueryRef": "how_found"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dq_known_issues"
+                    }
+                  },
+                  "Property": "how_handled"
+                }
+              },
+              "queryRef": "dq_known_issues.how_handled",
+              "nativeQueryRef": "how_handled"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dq_known_issues"
+                    }
+                  },
+                  "Property": "decision"
+                }
+              },
+              "queryRef": "dq_known_issues.decision",
+              "nativeQueryRef": "decision"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Known data issues and how they were handled'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
