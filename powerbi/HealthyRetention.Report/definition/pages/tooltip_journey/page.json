@@ -9,6 +9,7 @@
     "filters": [
       {
         "name": "tooltip_journey_f30",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -59,11 +60,11 @@
             }
           ]
         },
-        "howCreated": "User",
-        "ordinal": 0
+        "howCreated": "User"
       },
       {
         "name": "tooltip_journey_f31",
+        "ordinal": 1,
         "field": {
           "Column": {
             "Expression": {
@@ -114,11 +115,11 @@
             }
           ]
         },
-        "howCreated": "User",
-        "ordinal": 1
+        "howCreated": "User"
       },
       {
         "name": "tooltip_journey_f32",
+        "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
@@ -218,17 +219,16 @@
             }
           ]
         },
-        "howCreated": "User",
-        "ordinal": 2
+        "howCreated": "User"
       }
     ],
     "filterSortOrder": "Custom"
   },
-  "type": "Tooltip",
-  "visibility": "HiddenInViewMode",
   "pageBinding": {
     "name": "binding_tooltip_journey",
     "type": "Tooltip",
-    "referenceScope": "Default"
-  }
+    "parameters": []
+  },
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
 }

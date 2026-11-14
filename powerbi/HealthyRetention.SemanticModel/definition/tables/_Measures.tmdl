@@ -236,23 +236,20 @@ table _Measures
 	measure 'Group Retention M1' =
 			
 			DIVIDE ( [Group Active M1], [Group Players] )
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: a079d450-7d05-4dd0-ba86-24d52a04bedf
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Group Retention M2' =
 			
 			DIVIDE ( [Group Active M2], [Group Players] )
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 15f23d36-78e7-4600-a9e4-ee8957b23794
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Group Retention M3' =
 			
 			DIVIDE ( [Group Active M3], [Group Players] )
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: a2eba0fd-65aa-4a99-92e3-7e833108e394
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Group % of M3 Active' =
 			

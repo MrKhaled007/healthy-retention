@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Retention v2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#1F2A33}
+a{color:#7EB6FF}a:hover{color:#B5D4FF}
+.panel{background:#26333E;border:1px solid #36454F;border-radius:4px;box-sizing:border-box}
+.ptitle{font-size:14px;font-weight:600;color:#E8EEF2;padding-bottom:8px;border-bottom:1px solid #36454F;margin:0}
+.kt{font-size:13px;font-weight:600;color:#E8EEF2;padding-bottom:6px;border-bottom:1px solid #36454F}
+.kv{font-size:32px;font-weight:400;text-align:center;margin-top:10px;line-height:1.1}
+.ks{font-size:11px;color:#9DB0BE;text-align:center;margin-top:6px}
+.tab{font-size:13px;color:#9DB0BE;text-decoration:none;padding:6px 10px;border-radius:3px}
+.tab:hover{color:#E8EEF2;background:#26333E}
+.tab-on{color:#E8EEF2;background:#2F4050;box-shadow:inset 0 -2px 0 #4C8DF6}
+.dd{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:150px;background:#1F2A33;border:1px solid #9DB0BE;border-radius:2px;padding:5px 8px;font-size:13px;color:#E8EEF2}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; display: flex; flex-direction: column; background: #1F2A33; font-family: Inter, 'Segoe UI', sans-serif; color: #E8EEF2; overflow: hidden">
+<header style="height: 64px; flex: none; background: #17212A; display: flex; align-items: center; gap: 24px; padding: 0 24px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8EEF2" stroke-width="1.8" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>
+<div style="font-size: 20px; font-weight: 600">Healthy Retention</div>
+</div>
+<nav style="display: flex; gap: 4px" aria-label="Report pages">
+<a href="JourneyV2.dc.html" class="tab">Journey</a>
+<a href="RetentionV2.dc.html" class="tab tab-on" aria-current="page">Retention</a>
+<a href="SegmentsV2.dc.html" class="tab">Segments</a>
+<a href="HealthyV2.dc.html" class="tab">Healthy retention</a>
+<a href="FrictionV2.dc.html" class="tab">Friction</a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 16px; font-size: 13px">
+<label style="display: flex; align-items: center; gap: 8px">Cohort: <button type="button" class="dd">May 2019 – Jan 2020 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>
+<label style="display: flex; align-items: center; gap: 8px">Segment: <button type="button" class="dd" style="min-width: 90px">All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>
+</div>
+</header>
+<main style="flex: 1; min-height: 0; padding: 12px 16px 10px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+<section style="flex: 1.25; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Do players come back? Share of each cohort active k months later</h2>
+<div style="font-size: 11px; color: #9DB0BE; margin-top: 6px">New casino players · cohorts May 2019 – Jan 2020 · 1,247 players · empty = beyond Feb 2020</div>
+<div style="display: grid; grid-template-columns: 62px 40px repeat(9, minmax(0, 1fr)); gap: 2px; font-size: 10px; color: #9DB0BE; text-align: center; margin-top: 8px">
+<div style="text-align: left">Cohort</div><div>Size</div><div>M1</div><div>M2</div><div>M3</div><div>M4</div><div>M5</div><div>M6</div><div>M7</div><div>M8</div><div>M9</div>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 2px; margin-top: 3px">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="9">
+<div style="display: grid; grid-template-columns: 62px 40px repeat(9, minmax(0, 1fr)); gap: 2px; flex: 1">
+<div style="font-size: 11px; color: #E8EEF2; display: flex; align-items: center">{{ r.cohort }}</div>
+<div style="font-size: 11px; color: #9DB0BE; display: flex; align-items: center; justify-content: center">{{ r.size }}</div>
+<sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="9">
+<div style="{{ c.style }}">{{ c.txt }}</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div class="panel" style="padding: 10px 14px"><div class="kt">Month-1 retention</div><div class="kv" style="color: #C9D4DC">26.2%</div><div class="ks">pooled · about 1 in 4</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Highest cohort</div><div class="kv" style="color: #4CC26A">34.3%</div><div class="ks">Jun 2019 · 140 players</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Lowest cohort</div><div class="kv" style="color: #E5484D">19.9%</div><div class="ks">Jul 2019 · 146 players</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">New players</div><div class="kv" style="color: #C9D4DC">1,247</div><div class="ks">9 cohorts</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Within ±10 pts</div><div class="kv" style="color: #4CC26A">9 of 9</div><div class="ks">cohorts · a stable pattern</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Long-term core</div><div class="kv" style="color: #C9D4DC">10–15%</div><div class="ks">still active after month 4</div></div>
+</div>
+</section>
+<section style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Month-1 retention by cohort</h2>
+<div style="flex: 1; position: relative; display: flex; align-items: flex-end; gap: 6px; padding-top: 12px">
+<div style="position: absolute; left: 0; right: 0; bottom: 18px; height: 0; border-top: 1px dashed #E5E067; transform: translateY(-{{ avgPx }}px)"></div>
+<sc-for list="{{ m1 }}" as="b" hint-placeholder-count="9">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px">
+<div style="font-size: 9px; color: #C9D4DC">{{ b.v }}</div>
+<div style="{{ b.style }}"></div>
+<div style="font-size: 9px; color: #9DB0BE">{{ b.m }}</div>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 10px; color: #9DB0BE; margin-top: 4px"><span style="color: #E5E067">- - -</span> average 26.2%</div>
+</div>
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Month-1 vs average (pts)</h2>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding-top: 6px">
+<sc-for list="{{ diffs }}" as="d" hint-placeholder-count="9">
+<div style="display: grid; grid-template-columns: 44px minmax(0, 1fr) 34px; gap: 6px; align-items: center; font-size: 10px">
+<span style="color: #C9D4DC">{{ d.c }}</span>
+<div style="height: 11px; position: relative"><div style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #5B6B77"></div><div style="{{ d.style }}"></div></div>
+<span style="text-align: right">{{ d.txt }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Retention curve · May 2019 cohort</h2>
+<svg viewBox="0 0 380 170" style="width: 100%; flex: 1; min-height: 0" role="img" aria-label="Line chart: May 2019 cohort retention falls from 28.3 percent in month 1 to 10.9 percent in month 9">
+<g stroke="#36454F" stroke-width="1"><line x1="40" y1="20" x2="370" y2="20"/><line x1="40" y1="65" x2="370" y2="65"/><line x1="40" y1="110" x2="370" y2="110"/><line x1="40" y1="140" x2="370" y2="140"/></g>
+<g fill="#9DB0BE" font-size="10" font-family="Inter, sans-serif" text-anchor="end"><text x="34" y="24">30%</text><text x="34" y="69">20%</text><text x="34" y="114">10%</text><text x="34" y="144">0%</text></g>
+<polyline points="55,27.7 94,61.9 133,71.8 172,86.6 211,83.9 250,93.8 289,101 328,98.8 367,105" fill="none" stroke="#4C8DF6" stroke-width="2.5"/>
+<g fill="#4C8DF6"><circle cx="55" cy="27.7" r="3"/><circle cx="94" cy="61.9" r="3"/><circle cx="133" cy="71.8" r="3"/><circle cx="172" cy="86.6" r="3"/><circle cx="211" cy="83.9" r="3"/><circle cx="250" cy="93.8" r="3"/><circle cx="289" cy="101" r="3"/><circle cx="328" cy="98.8" r="3"/><circle cx="367" cy="105" r="3"/></g>
+<g fill="#9DB0BE" font-size="9" font-family="Inter, sans-serif" text-anchor="middle"><text x="55" y="158">M1</text><text x="94" y="158">M2</text><text x="133" y="158">M3</text><text x="172" y="158">M4</text><text x="211" y="158">M5</text><text x="250" y="158">M6</text><text x="289" y="158">M7</text><text x="328" y="158">M8</text><text x="367" y="158">M9</text></g>
+<g font-size="10" font-weight="600" font-family="Inter, sans-serif" text-anchor="middle" fill="#E8EEF2"><text x="66" y="22">28.3%</text><text x="354" y="96">10.9%</text></g>
+</svg>
+</div>
+</section>
+<footer style="font-size: 10px; color: #7D8F9C; display: flex; justify-content: space-between">
+<span>Source: Ghaharian et al. (2023), Mendeley Data, CC BY 4.0 · Cohorts of 100–180 players: ±6 pts is within chance</span>
+<span>Casino brand · v1.0 · Pacific time · USD</span>
+</footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const data = [
+      ['May 19',184,[28.3,20.7,18.5,15.2,15.8,13.6,12.0,12.5,10.9]],
+      ['Jun 19',140,[34.3,22.1,15.7,17.1,15.7,15.7,12.1,12.9]],
+      ['Jul 19',146,[19.9,17.1,15.8,9.6,10.3,6.8,9.6]],
+      ['Aug 19',127,[24.4,18.1,18.1,13.4,11.8,11.8]],
+      ['Sep 19',104,[20.2,13.5,13.5,10.6,8.7]],
+      ['Oct 19',115,[26.1,20.0,20.0,19.1]],
+      ['Nov 19',114,[33.3,19.3,20.2]],
+      ['Dec 19',139,[28.8,22.3]],
+      ['Jan 20',178,[21.3]]
+    ];
+    const base = 'display:flex;align-items:center;justify-content:center;border-radius:2px;font-size:10px;';
+    const rows = data.map(([cohort, size, v]) => ({
+      cohort, size,
+      cells: Array.from({ length: 9 }, (_, i) => {
+        if (i >= v.length) return { txt: '', style: base + 'background:#222D36' };
+        const a = Math.min(1, 0.15 + v[i] / 35 * 0.85).toFixed(2);
+        const dark = v[i] >= 17;
+        return { txt: v[i].toFixed(1), style: base + 'background:rgba(76,141,246,' + a + ');color:' + (dark ? '#0F1820' : '#E8EEF2') + ';font-weight:' + (dark ? '600' : '400') };
+      })
+    }));
+    const m1 = data.map(([c, , v]) => ({ m: c.slice(0, 3), v: v[0].toFixed(1), style: 'width:100%;border-radius:2px 2px 0 0;background:' + (v[0] >= 26.2 ? '#4C8DF6' : '#7EB6FF') + ';height:' + Math.round(v[0] / 35 * 100) + 'px' }));
+    const diffs = [['May 19',2.0],['Jun 19',8.1],['Jul 19',-6.4],['Aug 19',-1.8],['Sep 19',-6.0],['Oct 19',-0.1],['Nov 19',7.1],['Dec 19',2.6],['Jan 20',-4.9]].map(([c, d]) => {
+      const w = (Math.abs(d) / 10 * 50).toFixed(1);
+      return { c, txt: (d >= 0 ? '+' : '') + d.toFixed(1), style: 'position:absolute;top:0;height:11px;border-radius:2px;width:' + w + '%;' + (d >= 0 ? 'left:50%;background:#4CC26A' : 'right:50%;background:#E5484D') };
+    });
+    return { rows, m1, diffs, avgPx: Math.round(26.2 / 35 * 100) + 12 };
+  }
+}
+</script>
+</body>
+</html>

@@ -28,6 +28,7 @@
               },
               "queryRef": "dim_player.Decline Group",
               "nativeQueryRef": "Decline Group",
+              "active": true,
               "displayName": "Declines in first 30 days"
             }
           ]
@@ -84,11 +85,9 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "categoryAxis": [
         {
@@ -282,7 +281,8 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [

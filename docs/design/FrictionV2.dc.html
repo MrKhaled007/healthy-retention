@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Payment friction v2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#1F2A33}
+a{color:#7EB6FF}a:hover{color:#B5D4FF}
+.panel{background:#26333E;border:1px solid #36454F;border-radius:4px;box-sizing:border-box}
+.ptitle{font-size:14px;font-weight:600;color:#E8EEF2;padding-bottom:8px;border-bottom:1px solid #36454F;margin:0}
+.kt{font-size:13px;font-weight:600;color:#E8EEF2;padding-bottom:6px;border-bottom:1px solid #36454F}
+.kv{font-size:32px;font-weight:400;text-align:center;margin-top:10px;line-height:1.1}
+.ks{font-size:11px;color:#9DB0BE;text-align:center;margin-top:6px}
+.tab{font-size:13px;color:#9DB0BE;text-decoration:none;padding:6px 10px;border-radius:3px}
+.tab:hover{color:#E8EEF2;background:#26333E}
+.tab-on{color:#E8EEF2;background:#2F4050;box-shadow:inset 0 -2px 0 #4C8DF6}
+.dd{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:150px;background:#1F2A33;border:1px solid #9DB0BE;border-radius:2px;padding:5px 8px;font-size:13px;color:#E8EEF2}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; display: flex; flex-direction: column; background: #1F2A33; font-family: Inter, 'Segoe UI', sans-serif; color: #E8EEF2; overflow: hidden">
+<header style="height: 64px; flex: none; background: #17212A; display: flex; align-items: center; gap: 24px; padding: 0 24px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8EEF2" stroke-width="1.8" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>
+<div style="font-size: 20px; font-weight: 600">Healthy Retention</div>
+</div>
+<nav style="display: flex; gap: 4px" aria-label="Report pages">
+<a href="JourneyV2.dc.html" class="tab">Journey</a>
+<a href="RetentionV2.dc.html" class="tab">Retention</a>
+<a href="SegmentsV2.dc.html" class="tab">Segments</a>
+<a href="HealthyV2.dc.html" class="tab">Healthy retention</a>
+<a href="FrictionV2.dc.html" class="tab tab-on" aria-current="page">Friction</a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 16px; font-size: 13px">
+<label style="display: flex; align-items: center; gap: 8px">Cohort: <button type="button" class="dd">May 2019 – Jan 2020 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>
+</div>
+</header>
+<main style="flex: 1; min-height: 0; padding: 12px 16px 10px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+<section style="flex: 1.2; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Do declined payments push players away?</h2>
+<div style="font-size: 11px; color: #9DB0BE; margin-top: 6px">Month-1 retention by declined top-ups in the first 30 days · 1,243 new casino players</div>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12px; margin-top: 6px">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; align-items: center">
+<div style="font-size: 12px; color: #C9D4DC; text-align: right">{{ g.name }}<br><span style="font-size: 10px; color: #7D8F9C">{{ g.players }} players</span></div>
+<div style="display: flex; align-items: center; gap: 6px">
+<div style="{{ g.style }}"></div>
+<span style="font-size: 11px; font-weight: 600; background: #36454F; padding: 2px 6px; border-radius: 2px">{{ g.txt }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 10px; color: #9DB0BE">Small groups (28–43 players): read the pattern, not the decimals</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div class="panel" style="padding: 10px 14px"><div class="kt">Card top-ups declined</div><div class="kv" style="color: #E5484D">8.2%</div><div class="ks">about 1 in 12 attempts</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">First attempt declined</div><div class="kv" style="color: #C9D4DC">39</div><div class="ks">new players</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Ever deposited after</div><div class="kv" style="color: #E5484D">2 of 39</div><div class="ks">blocked at the door</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Month-1 retention gap</div><div class="kv" style="color: #E5484D">−24.5 pts</div><div class="ks">2.6% vs 27.1% approved</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">6+ declines in 30 days</div><div class="kv" style="color: #E5E067">32</div><div class="ks">players</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Their month-1 retention</div><div class="kv" style="color: #E5484D">68.8%</div><div class="ks">Duty of Care signal</div></div>
+</div>
+</section>
+<section style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">First funding attempt</h2>
+<div style="flex: 1; display: flex; align-items: flex-end; justify-content: space-around; padding-top: 8px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 90px">
+<div style="font-size: 13px; font-weight: 600">27.1%</div>
+<div style="width: 56px; height: 120px; background: #4C8DF6; border-radius: 2px 2px 0 0"></div>
+<div style="font-size: 11px; color: #C9D4DC; text-align: center">Approved<br><span style="color: #7D8F9C">1,204</span></div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 90px">
+<div style="font-size: 13px; font-weight: 600; color: #E5484D">2.6%</div>
+<div style="width: 56px; height: 12px; background: #E39A86; border-radius: 2px 2px 0 0"></div>
+<div style="font-size: 11px; color: #C9D4DC; text-align: center">Declined<br><span style="color: #7D8F9C">39</span></div>
+</div>
+</div>
+</div>
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">One decline, two meanings</h2>
+<div style="flex: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 10px">
+<div style="border: 1px solid #36454F; border-top: 3px solid #E39A86; border-radius: 2px; padding: 12px 14px; background: #222D36">
+<div style="font-size: 13px; font-weight: 600; color: #E8EEF2">First attempt declined</div>
+<div style="font-size: 12px; color: #C9D4DC; margin-top: 6px; line-height: 1.5">A new player blocked at the door. Only 2 of 39 ever deposit.</div>
+<div style="font-size: 12px; color: #4CC26A; margin-top: 8px; font-weight: 600">Commercial fix: guide them on the spot</div>
+</div>
+<div style="border: 1px solid #36454F; border-top: 3px solid #E5E067; border-radius: 2px; padding: 12px 14px; background: #222D36">
+<div style="font-size: 13px; font-weight: 600; color: #E8EEF2">6+ declines in 30 days</div>
+<div style="font-size: 12px; color: #C9D4DC; margin-top: 6px; line-height: 1.5">A player pushing past refusals, and staying: 68.8% active in month 1.</div>
+<div style="font-size: 12px; color: #E5E067; margin-top: 8px; font-weight: 600">Duty of Care review, not a retention campaign</div>
+</div>
+</div>
+</div>
+</section>
+<footer style="font-size: 10px; color: #7D8F9C; display: flex; justify-content: space-between">
+<span>Source: Ghaharian et al. (2023), Mendeley Data, CC BY 4.0 · No decline reason in the data · Right-click a bar → Drill through → Player list</span>
+<span>Casino brand · v1.0 · Pacific time · USD</span>
+</footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const groups = [['0 declines', 1140, 25.3, '#4C8DF6'], ['1 decline', 28, 17.9, '#7EB6FF'], ['2–5 declines', 43, 27.9, '#8A6CF0'], ['6+ declines', 32, 68.8, '#E5E067']].map(([name, p, r, c]) => ({
+      name,
+      players: p.toLocaleString('en-US'),
+      txt: r.toFixed(1) + '%',
+      style: 'height:26px;border-radius:2px;background:' + c + ';width:' + (r / 70 * 82).toFixed(1) + '%'
+    }));
+    return { groups };
+  }
+}
+</script>
+</body>
+</html>

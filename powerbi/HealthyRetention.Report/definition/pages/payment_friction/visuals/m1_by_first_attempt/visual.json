@@ -28,6 +28,7 @@
               },
               "queryRef": "dim_player.first_funding_attempt_status",
               "nativeQueryRef": "first_funding_attempt_status",
+              "active": true,
               "displayName": "First funding attempt"
             }
           ]
@@ -52,7 +53,6 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "categoryAxis": [
         {
@@ -227,6 +227,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

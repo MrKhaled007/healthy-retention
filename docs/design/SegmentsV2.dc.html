@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Segments v2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#1F2A33}
+a{color:#7EB6FF}a:hover{color:#B5D4FF}
+.panel{background:#26333E;border:1px solid #36454F;border-radius:4px;box-sizing:border-box}
+.ptitle{font-size:14px;font-weight:600;color:#E8EEF2;padding-bottom:8px;border-bottom:1px solid #36454F;margin:0}
+.kt{font-size:13px;font-weight:600;color:#E8EEF2;padding-bottom:6px;border-bottom:1px solid #36454F}
+.kv{font-size:32px;font-weight:400;text-align:center;margin-top:10px;line-height:1.1}
+.ks{font-size:11px;color:#9DB0BE;text-align:center;margin-top:6px}
+.tab{font-size:13px;color:#9DB0BE;text-decoration:none;padding:6px 10px;border-radius:3px}
+.tab:hover{color:#E8EEF2;background:#26333E}
+.tab-on{color:#E8EEF2;background:#2F4050;box-shadow:inset 0 -2px 0 #4C8DF6}
+.dd{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:150px;background:#1F2A33;border:1px solid #9DB0BE;border-radius:2px;padding:5px 8px;font-size:13px;color:#E8EEF2}
+.th{font-size:11px;color:#9DB0BE;font-weight:500;text-align:right;padding:6px 8px;border-bottom:1px solid #36454F}
+.td{font-size:12px;color:#E8EEF2;text-align:right;padding:7px 8px;border-bottom:1px solid #2F3D48}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; display: flex; flex-direction: column; background: #1F2A33; font-family: Inter, 'Segoe UI', sans-serif; color: #E8EEF2; overflow: hidden">
+<header style="height: 64px; flex: none; background: #17212A; display: flex; align-items: center; gap: 24px; padding: 0 24px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8EEF2" stroke-width="1.8" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>
+<div style="font-size: 20px; font-weight: 600">Healthy Retention</div>
+</div>
+<nav style="display: flex; gap: 4px" aria-label="Report pages">
+<a href="JourneyV2.dc.html" class="tab">Journey</a>
+<a href="RetentionV2.dc.html" class="tab">Retention</a>
+<a href="SegmentsV2.dc.html" class="tab tab-on" aria-current="page">Segments</a>
+<a href="HealthyV2.dc.html" class="tab">Healthy retention</a>
+<a href="FrictionV2.dc.html" class="tab">Friction</a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 16px; font-size: 13px">
+<label style="display: flex; align-items: center; gap: 8px">Player type: <button type="button" class="dd" style="min-width: 90px">All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>
+<label style="display: flex; align-items: center; gap: 8px">Cohort: <button type="button" class="dd">All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>
+</div>
+</header>
+<main style="flex: 1; min-height: 0; padding: 12px 16px 10px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+<section style="flex: 1.2; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">{{ chartTitle }}</h2>
+<div style="display: flex; gap: 4px; margin-top: 8px" role="group" aria-label="Measure">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+<button type="button" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+</sc-for>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12px; margin-top: 6px">
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="4">
+<div style="display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 8px; align-items: center">
+<div style="font-size: 12px; color: #C9D4DC; text-align: right">{{ b.name }}</div>
+<div style="display: flex; align-items: center; gap: 6px">
+<div style="{{ b.style }}"></div>
+<span style="font-size: 11px; font-weight: 600; background: #36454F; padding: 2px 6px; border-radius: 2px">{{ b.txt }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div class="panel" style="padding: 10px 14px"><div class="kt">Depositors</div><div class="kv" style="color: #C9D4DC">2,286</div><div class="ks">at least one approved deposit</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Deposit money</div><div class="kv" style="color: #C9D4DC">$5.90M</div><div class="ks">approved deposits only</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Typical repeat depositor</div><div class="kv" style="color: #C9D4DC">$77</div><div class="ks">median per month</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">High-intensity players</div><div class="kv" style="color: #E5E067">144</div><div class="ks">6.3% of depositors</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Their share of money</div><div class="kv" style="color: #E5484D">65.8%</div><div class="ks">$3.88M · heavy concentration</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Their declined top-ups</div><div class="kv" style="color: #E5484D">27.0</div><div class="ks">per player · 13× regular</div></div>
+</div>
+</section>
+<section style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 12px">
+<div class="panel" style="padding: 12px 16px">
+<h2 class="ptitle">Segment profile</h2>
+<table style="width: 100%; border-collapse: collapse; margin-top: 4px">
+<thead><tr><th class="th" style="text-align: left">Segment</th><th class="th">Players</th><th class="th">% players</th><th class="th">Deposit money</th><th class="th">% money</th><th class="th">Median $/mo</th><th class="th">Days/mo</th><th class="th">Avg declines</th></tr></thead>
+<tbody>
+<tr><td class="td" style="text-align: left"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #6ED6E8; margin-right: 6px"></span>One-and-done</td><td class="td">847</td><td class="td">37.1%</td><td class="td">$89,770</td><td class="td">1.5%</td><td class="td">$9</td><td class="td">0.3</td><td class="td">0.0</td></tr>
+<tr><td class="td" style="text-align: left"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #7EB6FF; margin-right: 6px"></span>Light</td><td class="td">719</td><td class="td">31.5%</td><td class="td">$172,662</td><td class="td">2.9%</td><td class="td">$22</td><td class="td">0.6</td><td class="td">0.2</td></tr>
+<tr><td class="td" style="text-align: left"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #4C8DF6; margin-right: 6px"></span>Regular</td><td class="td">576</td><td class="td">25.2%</td><td class="td">$1,752,048</td><td class="td">29.7%</td><td class="td">$250</td><td class="td">2.9</td><td class="td">2.0</td></tr>
+<tr><td class="td" style="text-align: left; color: #E5E067; font-weight: 600"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #E5E067; margin-right: 6px"></span>High-intensity</td><td class="td">144</td><td class="td">6.3%</td><td class="td">$3,881,316</td><td class="td" style="color: #E5484D; font-weight: 600">65.8%</td><td class="td">$1,941</td><td class="td">7.1</td><td class="td" style="color: #E5484D; font-weight: 600">27.0</td></tr>
+</tbody>
+</table>
+<div style="font-size: 10px; color: #9DB0BE; margin-top: 8px">Right-click a segment → Drill through → Player list · Thresholds per brand: median $77, 90th percentile $1,038 per month</div>
+</div>
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Players vs money</h2>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 14px">
+<div><div style="font-size: 11px; color: #C9D4DC; margin-bottom: 4px">Share of players</div>
+<div style="display: flex; height: 22px; border-radius: 2px; overflow: hidden"><div style="width: 37.1%; background: #6ED6E8"></div><div style="width: 31.5%; background: #7EB6FF"></div><div style="width: 25.2%; background: #4C8DF6"></div><div style="width: 6.3%; background: #E5E067"></div></div></div>
+<div><div style="font-size: 11px; color: #C9D4DC; margin-bottom: 4px">Share of deposit money</div>
+<div style="display: flex; height: 22px; border-radius: 2px; overflow: hidden"><div style="width: 1.5%; background: #6ED6E8"></div><div style="width: 2.9%; background: #7EB6FF"></div><div style="width: 29.7%; background: #4C8DF6"></div><div style="width: 65.8%; background: #E5E067; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #17212A">65.8%</div></div></div>
+<div style="font-size: 11px; color: #9DB0BE; line-height: 1.45">6% of depositors bring two-thirds of the money.</div>
+</div>
+</div>
+</section>
+<footer style="font-size: 10px; color: #7D8F9C; display: flex; justify-content: space-between">
+<span>Source: Ghaharian et al. (2023), Mendeley Data, CC BY 4.0 · Mar 2019 – Feb 2020</span>
+<span>"High-intensity" is a spending proxy, not confirmed harm</span>
+</footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { m: 'money' }; }
+  renderVals() {
+    const seg = [
+      { name: 'One-and-done', c: '#6ED6E8', players: 37.1, money: 1.5, median: 9 },
+      { name: 'Light', c: '#7EB6FF', players: 31.5, money: 2.9, median: 22 },
+      { name: 'Regular', c: '#4C8DF6', players: 25.2, money: 29.7, median: 250 },
+      { name: 'High-intensity', c: '#E5E067', players: 6.3, money: 65.8, median: 1941 }
+    ];
+    const m = this.state.m;
+    const max = m === 'median' ? 1941 : 70;
+    const bars = seg.map((s) => ({
+      name: s.name,
+      txt: m === 'median' ? '$' + s[m].toLocaleString('en-US') : s[m].toFixed(1) + '%',
+      style: 'height:26px;border-radius:2px;background:' + s.c + ';width:' + Math.max(1.5, s[m] / max * 78).toFixed(1) + '%'
+    }));
+    const defs = [['players', 'Share of players'], ['money', 'Share of money'], ['median', 'Median $/month']];
+    const on = 'border:1px solid #4C8DF6;border-radius:2px;padding:5px 10px;font-size:12px;cursor:pointer;background:#2F4050;color:#E8EEF2';
+    const off = 'border:1px solid #36454F;border-radius:2px;padding:5px 10px;font-size:12px;cursor:pointer;background:transparent;color:#9DB0BE';
+    const tabs = defs.map(([k, label]) => ({ label, style: k === m ? on : off, pick: () => this.setState({ m: k }) }));
+    const titles = { players: 'Share of depositors by segment', money: 'Who brings the money in? Share of deposit money by segment', median: 'Typical monthly deposit by segment' };
+    return { bars, tabs, chartTitle: titles[m] };
+  }
+}
+</script>
+</body>
+</html>

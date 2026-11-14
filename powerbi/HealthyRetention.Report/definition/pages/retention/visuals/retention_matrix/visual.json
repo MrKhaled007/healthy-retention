@@ -13,25 +13,6 @@
     "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Rows": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_player"
-                    }
-                  },
-                  "Property": "cohort_month"
-                }
-              },
-              "queryRef": "dim_player.cohort_month",
-              "nativeQueryRef": "cohort_month",
-              "displayName": "Cohort"
-            }
-          ]
-        },
         "Columns": {
           "projections": [
             {
@@ -47,7 +28,28 @@
               },
               "queryRef": "fct_player_month.months_since_first_seen",
               "nativeQueryRef": "months_since_first_seen",
+              "active": true,
               "displayName": "Months since first seen"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_player"
+                    }
+                  },
+                  "Property": "cohort_month"
+                }
+              },
+              "queryRef": "dim_player.cohort_month",
+              "nativeQueryRef": "cohort_month",
+              "active": true,
+              "displayName": "Cohort"
             }
           ]
         },
@@ -85,11 +87,9 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "values": [
         {
@@ -253,7 +253,8 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [

@@ -79,7 +79,7 @@
                                   "Source": "s"
                                 }
                               },
-                              "Property": "Segment Measure"
+                              "Property": "Segment Measure Fields"
                             }
                           }
                         ],
@@ -87,10 +87,60 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Share of money'"
+                                "Value": "'''_Measures''[% of Players]'"
                               }
                             }
                           ]
+                        ]
+                      }
+                    },
+                    "Annotations": {
+                      "filterExpressionMetadata": {
+                        "expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Segment Measure"
+                                }
+                              },
+                              "Property": "Segment Measure"
+                            }
+                          }
+                        ],
+                        "decomposedIdentities": {
+                          "values": [
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'''_Measures''[% of Players]'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          ],
+                          "columns": [
+                            {
+                              "value": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Segment Measure"
+                                    }
+                                  },
+                                  "Property": "Segment Measure Fields"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "valueMap": [
+                          {
+                            "0": "Share of players"
+                          }
                         ]
                       }
                     }

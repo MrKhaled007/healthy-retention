@@ -130,13 +130,6 @@
                   }
                 }
               }
-            },
-            "roundEdge": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
             }
           },
           "selector": {

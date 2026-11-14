@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Deposit journey v2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#1F2A33}
+a{color:#7EB6FF}a:hover{color:#B5D4FF}
+.panel{background:#26333E;border:1px solid #36454F;border-radius:4px;box-sizing:border-box}
+.ptitle{font-size:14px;font-weight:600;color:#E8EEF2;padding-bottom:8px;border-bottom:1px solid #36454F;margin:0}
+.kt{font-size:13px;font-weight:600;color:#E8EEF2;padding-bottom:6px;border-bottom:1px solid #36454F}
+.kv{font-size:32px;font-weight:400;text-align:center;margin-top:10px;line-height:1.1}
+.ks{font-size:11px;color:#9DB0BE;text-align:center;margin-top:6px}
+.tab{font-size:13px;color:#9DB0BE;text-decoration:none;padding:6px 10px;border-radius:3px}
+.tab:hover{color:#E8EEF2;background:#26333E}
+.tab-on{color:#E8EEF2;background:#2F4050;box-shadow:inset 0 -2px 0 #4C8DF6}
+.dd{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:150px;background:#1F2A33;border:1px solid #9DB0BE;border-radius:2px;padding:5px 8px;font-size:13px;color:#E8EEF2}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; display: flex; flex-direction: column; background: #1F2A33; font-family: Inter, 'Segoe UI', sans-serif; color: #E8EEF2; overflow: hidden">
+<header style="height: 64px; flex: none; background: #17212A; display: flex; align-items: center; gap: 24px; padding: 0 24px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8EEF2" stroke-width="1.8" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>
+<div style="font-size: 20px; font-weight: 600">Healthy Retention</div>
+</div>
+<nav style="display: flex; gap: 4px" aria-label="Report pages">
+<a href="JourneyV2.dc.html" class="tab tab-on" aria-current="page">Journey</a>
+<a href="RetentionV2.dc.html" class="tab">Retention</a>
+<a href="SegmentsV2.dc.html" class="tab">Segments</a>
+<a href="HealthyV2.dc.html" class="tab">Healthy retention</a>
+<a href="FrictionV2.dc.html" class="tab">Friction</a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 16px; font-size: 13px">
+<label style="display: flex; align-items: center; gap: 8px">Cohort: <button type="button" class="dd">May–Dec 2019 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>
+<label style="display: flex; align-items: center; gap: 8px">Player type: <button type="button" class="dd" style="min-width: 90px">New <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>
+</div>
+</header>
+<main style="flex: 1; min-height: 0; padding: 12px 16px 10px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+<section style="flex: 1.15; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Where do new players drop off?</h2>
+<div style="font-size: 11px; color: #9DB0BE; margin-top: 6px">Deposit journey · new casino players · cohorts May–Dec 2019 · 1,069 players</div>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4px; margin-top: 6px">
+<div style="display: grid; grid-template-columns: 112px minmax(0, 1fr); font-size: 11px; color: #9DB0BE"><span></span><span style="text-align: center">100%</span></div>
+<sc-for list="{{ funnel }}" as="f" hint-placeholder-count="7">
+<div style="display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 8px; align-items: center">
+<div style="font-size: 12px; color: #E8EEF2">{{ f.name }}</div>
+<div style="height: 22px; display: flex; justify-content: center; position: relative">
+<div style="{{ f.style }}"></div>
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #17212A">{{ f.label }}</div>
+</div>
+</div>
+</sc-for>
+<div style="display: grid; grid-template-columns: 112px minmax(0, 1fr); font-size: 11px; color: #9DB0BE"><span></span><span style="text-align: center">13.7%</span></div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div class="panel" style="padding: 10px 14px"><div class="kt">New players</div><div class="kv" style="color: #C9D4DC">1,069</div><div class="ks">cohorts May–Dec 2019</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Reached first deposit</div><div class="kv" style="color: #4CC26A">96.2%</div><div class="ks">1,028 players · getting in works</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Funded successfully</div><div class="kv" style="color: #C9D4DC">96.6%</div><div class="ks">36 never got money in</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Never made a 2nd deposit</div><div class="kv" style="color: #E5484D">462</div><div class="ks">43% of new players · biggest loss</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Active in month 1</div><div class="kv" style="color: #E5484D">26.9%</div><div class="ks">288 players</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Active in month 2</div><div class="kv" style="color: #E5484D">13.7%</div><div class="ks">146 players</div></div>
+</div>
+</section>
+<section style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">New players by cohort</h2>
+<div style="flex: 1; display: flex; align-items: flex-end; gap: 8px; padding-top: 10px">
+<sc-for list="{{ cohorts }}" as="c" hint-placeholder-count="8">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px">
+<div style="font-size: 10px; color: #C9D4DC">{{ c.n }}</div>
+<div style="{{ c.style }}"></div>
+<div style="font-size: 10px; color: #9DB0BE">{{ c.m }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Step conversion (% of previous step)</h2>
+<svg viewBox="0 0 380 170" style="width: 100%; flex: 1; min-height: 0" role="img" aria-label="Step line: conversion 99.6, 97.0, 99.5, 55.1, 50.9 and 50.7 percent from tried to fund to active month 2">
+<g stroke="#36454F" stroke-width="1"><line x1="40" y1="20" x2="370" y2="20"/><line x1="40" y1="57" x2="370" y2="57"/><line x1="40" y1="93" x2="370" y2="93"/><line x1="40" y1="130" x2="370" y2="130"/></g>
+<g fill="#9DB0BE" font-size="10" font-family="Inter, sans-serif" text-anchor="end"><text x="34" y="24">100%</text><text x="34" y="61">80%</text><text x="34" y="97">60%</text><text x="34" y="134">40%</text></g>
+<path d="M40,20.7 H95 V25.5 H150 V20.8 H205 V102.3 H260 V110 H315 V110.4 H370" fill="none" stroke="#7EB6FF" stroke-width="2.5"/>
+<g fill="#9DB0BE" font-size="9" font-family="Inter, sans-serif" text-anchor="middle"><text x="67" y="150">Tried</text><text x="122" y="150">Funded</text><text x="177" y="150">1st dep.</text><text x="232" y="150">2nd dep.</text><text x="287" y="150">Month 1</text><text x="342" y="150">Month 2</text></g>
+<g font-size="10" font-weight="600" font-family="Inter, sans-serif" text-anchor="middle"><text x="232" y="96" fill="#E5484D">55.1%</text><text x="342" y="104" fill="#E5484D">50.7%</text><text x="122" y="40" fill="#4CC26A">97.0%</text></g>
+</svg>
+</div>
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Players lost at each step</h2>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-top: 6px">
+<sc-for list="{{ losses }}" as="l" hint-placeholder-count="4">
+<div style="display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 8px; align-items: center">
+<div style="font-size: 11px; color: #C9D4DC; text-align: right">{{ l.name }}</div>
+<div style="display: flex; align-items: center; gap: 6px">
+<div style="{{ l.style }}"></div>
+<span style="font-size: 10px; font-weight: 600; background: #36454F; color: #E8EEF2; padding: 2px 5px; border-radius: 2px">{{ l.n }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+<footer style="font-size: 10px; color: #7D8F9C; display: flex; justify-content: space-between">
+<span>Source: Ghaharian et al. (2023), Mendeley Data, CC BY 4.0 · Active = an approved deposit into gambling that month</span>
+<span>Casino brand · v1.0 · Pacific time · USD</span>
+</footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const pal = ['#4C8DF6', '#7EB6FF', '#8A6CF0', '#9BD15A', '#E5E067', '#6ED6E8', '#E39A86'];
+    const steps = [['New player', 1069], ['Tried to fund', 1065], ['Funded', 1033], ['First deposit', 1028], ['Second deposit', 566], ['Active month 1', 288], ['Active month 2', 146]];
+    const funnel = steps.map(([name, n], i) => ({
+      name,
+      label: n.toLocaleString('en-US'),
+      style: 'height:22px;border-radius:2px;width:' + (n / 1069 * 100).toFixed(1) + '%;background:' + pal[i]
+    }));
+    const cs = [['May', 184], ['Jun', 140], ['Jul', 146], ['Aug', 127], ['Sep', 104], ['Oct', 115], ['Nov', 114], ['Dec', 139]];
+    const cohorts = cs.map(([m, n]) => ({ m, n, style: 'width:100%;border-radius:2px 2px 0 0;background:#4C8DF6;height:' + Math.round(n / 184 * 110) + 'px' }));
+    const ls = [['Failed to fund', 32, '#6ED6E8'], ['1st → 2nd deposit', 462, '#E39A86'], ['2nd dep. → month 1', 278, '#8A6CF0'], ['Month 1 → month 2', 142, '#7EB6FF']];
+    const losses = ls.map(([name, n, c]) => ({ name, n, style: 'height:22px;border-radius:2px;background:' + c + ';width:' + Math.max(4, n / 462 * 78).toFixed(1) + '%' }));
+    return { funnel, cohorts, losses };
+  }
+}
+</script>
+</body>
+</html>

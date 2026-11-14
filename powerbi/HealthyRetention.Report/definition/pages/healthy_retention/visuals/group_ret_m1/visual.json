@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Spend Group.Group",
-              "nativeQueryRef": "Group"
+              "nativeQueryRef": "Group",
+              "active": true
             }
           ]
         },
@@ -65,11 +66,9 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "categoryAxis": [
         {
@@ -244,6 +243,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

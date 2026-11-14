@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "HI Threshold.HI Threshold",
-              "nativeQueryRef": "HI Threshold"
+              "nativeQueryRef": "HI Threshold",
+              "active": true
             }
           ]
         }

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Healthy retention v2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#1F2A33}
+a{color:#7EB6FF}a:hover{color:#B5D4FF}
+.panel{background:#26333E;border:1px solid #36454F;border-radius:4px;box-sizing:border-box}
+.ptitle{font-size:14px;font-weight:600;color:#E8EEF2;padding-bottom:8px;border-bottom:1px solid #36454F;margin:0}
+.kt{font-size:13px;font-weight:600;color:#E8EEF2;padding-bottom:6px;border-bottom:1px solid #36454F}
+.kv{font-size:32px;font-weight:400;text-align:center;margin-top:10px;line-height:1.1}
+.ks{font-size:11px;color:#9DB0BE;text-align:center;margin-top:6px}
+.tab{font-size:13px;color:#9DB0BE;text-decoration:none;padding:6px 10px;border-radius:3px}
+.tab:hover{color:#E8EEF2;background:#26333E}
+.tab-on{color:#E8EEF2;background:#2F4050;box-shadow:inset 0 -2px 0 #4C8DF6}
+.dd{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:150px;background:#1F2A33;border:1px solid #9DB0BE;border-radius:2px;padding:5px 8px;font-size:13px;color:#E8EEF2}
+input[type=range]{accent-color:#E5E067;width:160px}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; display: flex; flex-direction: column; background: #1F2A33; font-family: Inter, 'Segoe UI', sans-serif; color: #E8EEF2; overflow: hidden">
+<header style="height: 64px; flex: none; background: #17212A; display: flex; align-items: center; gap: 24px; padding: 0 24px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8EEF2" stroke-width="1.8" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>
+<div style="font-size: 20px; font-weight: 600">Healthy Retention</div>
+</div>
+<nav style="display: flex; gap: 4px" aria-label="Report pages">
+<a href="JourneyV2.dc.html" class="tab">Journey</a>
+<a href="RetentionV2.dc.html" class="tab">Retention</a>
+<a href="SegmentsV2.dc.html" class="tab">Segments</a>
+<a href="HealthyV2.dc.html" class="tab tab-on" aria-current="page">Healthy retention</a>
+<a href="FrictionV2.dc.html" class="tab">Friction</a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 16px; font-size: 13px">
+<label for="thr" style="display: flex; align-items: center; gap: 8px">Threshold: <input id="thr" type="range" min="500" max="2000" step="50" value="{{ thr }}" onChange="{{ setThr }}"> <span style="color: #E5E067; font-weight: 600; min-width: 48px">{{ thrTxt }}</span></label>
+<label style="display: flex; align-items: center; gap: 8px">Cohort: <button type="button" class="dd" style="min-width: 120px">May–Nov 2019 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>
+</div>
+</header>
+<main style="flex: 1; min-height: 0; padding: 12px 16px 10px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+<section style="flex: 1.2; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Is our retention healthy? Retention by first-30-day spending</h2>
+<div style="font-size: 11px; color: #9DB0BE; margin-top: 6px; display: flex; gap: 16px">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #E5E067"></span>Early high-intensity (109)</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #4C8DF6"></span>Other depositors (788)</span>
+</div>
+<svg viewBox="0 0 400 175" style="width: 100%; flex: 1; min-height: 0" role="img" aria-label="Line chart: early high-intensity retention 76.1, 52.3 and 45.9 percent in months 1 to 3; other depositors 21.1, 15.1 and 14.2 percent">
+<g stroke="#36454F" stroke-width="1"><line x1="40" y1="20" x2="390" y2="20"/><line x1="40" y1="52.5" x2="390" y2="52.5"/><line x1="40" y1="85" x2="390" y2="85"/><line x1="40" y1="117.5" x2="390" y2="117.5"/><line x1="40" y1="150" x2="390" y2="150"/></g>
+<g fill="#9DB0BE" font-size="10" font-family="Inter, sans-serif" text-anchor="end"><text x="34" y="24">100%</text><text x="34" y="56">75%</text><text x="34" y="89">50%</text><text x="34" y="121">25%</text><text x="34" y="154">0%</text></g>
+<g fill="#9DB0BE" font-size="10" font-family="Inter, sans-serif" text-anchor="middle"><text x="80" y="168">Month 1</text><text x="215" y="168">Month 2</text><text x="350" y="168">Month 3</text></g>
+<polyline points="80,51.1 215,82 350,90.3" fill="none" stroke="#E5E067" stroke-width="2.5"/>
+<polyline points="80,122.6 215,130.4 350,131.5" fill="none" stroke="#4C8DF6" stroke-width="2.5"/>
+<g fill="#E5E067"><circle cx="80" cy="51.1" r="4"/><circle cx="215" cy="82" r="4"/><circle cx="350" cy="90.3" r="4"/></g>
+<g fill="#4C8DF6"><circle cx="80" cy="122.6" r="4"/><circle cx="215" cy="130.4" r="4"/><circle cx="350" cy="131.5" r="4"/></g>
+<g font-size="10" font-weight="600" font-family="Inter, sans-serif" text-anchor="middle"><text x="80" y="41" fill="#E5E067">76.1%</text><text x="215" y="72" fill="#E5E067">52.3%</text><text x="350" y="80" fill="#E5E067">45.9%</text><text x="80" y="113" fill="#7EB6FF">21.1%</text><text x="215" y="121" fill="#7EB6FF">15.1%</text><text x="350" y="122" fill="#7EB6FF">14.2%</text></g>
+</svg>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div class="panel" style="padding: 10px 14px"><div class="kt">Early high-intensity</div><div class="kv" style="color: #E5E067">109</div><div class="ks">12.2% of 897 new depositors</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Their month-3 retention</div><div class="kv" style="color: #E5484D">45.9%</div><div class="ks">vs 14.2% for the others</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Retention gap</div><div class="kv" style="color: #E5484D">3.2×</div><div class="ks">month 3 · the robust finding</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Of month-3 active players</div><div class="kv" style="color: #E5484D">30.9%</div><div class="ks">50 of 162 are high-intensity</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Of month-3 money</div><div class="kv" style="color: #E5484D">63.3%</div><div class="ks">$126k of $199k</div></div>
+<div class="panel" style="padding: 10px 14px"><div class="kt">Other depositors, M3</div><div class="kv" style="color: #C9D4DC">14.2%</div><div class="ks">112 of 788 players</div></div>
+</div>
+</section>
+<section style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Who is active in month 3?</h2>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px">
+<div style="display: flex; height: 30px; border-radius: 2px; overflow: hidden"><div style="width: 30.9%; background: #E5E067; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #17212A">50</div><div style="flex: 1; background: #4C8DF6; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #0F1820">112</div></div>
+<div style="display: flex; justify-content: space-between; font-size: 11px; color: #9DB0BE"><span>30.9% high-intensity</span><span>69.1% others</span></div>
+</div>
+</div>
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Where does month-3 money come from?</h2>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px">
+<div style="display: flex; height: 30px; border-radius: 2px; overflow: hidden"><div style="width: 63.3%; background: #E5E067; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #17212A">$126k</div><div style="flex: 1; background: #4C8DF6; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #0F1820">$73k</div></div>
+<div style="display: flex; justify-content: space-between; font-size: 11px; color: #9DB0BE"><span>63.3% high-intensity</span><span>36.7% others</span></div>
+</div>
+</div>
+<div class="panel" style="padding: 12px 16px; display: flex; flex-direction: column">
+<h2 class="ptitle">Recommendation</h2>
+<p style="margin: 10px 0 0; font-size: 13px; line-height: 1.5; color: #E8EEF2">Report retention separately for early high-intensity players, so retention targets never reward risky play.</p>
+<p style="margin: 8px 0 0; font-size: 11px; line-height: 1.45; color: #9DB0BE">Only 50 high-intensity players are active in month 3: read the gap, not the decimal.</p>
+</div>
+</section>
+<footer style="font-size: 10px; color: #7D8F9C; display: flex; justify-content: space-between">
+<span>Source: Ghaharian et al. (2023), Mendeley Data, CC BY 4.0 · Values shown at $1,038; Power BI recalculates when the slider moves</span>
+<span>"High-intensity" is a spending proxy, not confirmed harm</span>
+</footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { thr: 1050 }; }
+  renderVals() {
+    const thr = this.state.thr;
+    return { thr, thrTxt: '$' + thr.toLocaleString('en-US'), setThr: (e) => this.setState({ thr: Number(e.target.value) }) };
+  }
+}
+</script>
+</body>
+</html>

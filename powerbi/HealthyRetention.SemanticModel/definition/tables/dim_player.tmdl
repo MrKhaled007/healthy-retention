@@ -35,7 +35,7 @@ table dim_player
 
 	column cohort_month
 		dataType: dateTime
-		formatString: mmmm yyyy
+		formatString: Mmm yyyy
 		lineageTag: 59c35428-3a18-4fc3-af91-1962946ae10b
 		summarizeBy: none
 		sourceColumn: cohort_month
@@ -49,7 +49,7 @@ table dim_player
 
 		annotation UnderlyingDateTimeDataType = Date
 
-		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+		annotation PBI_FormatHint = {"isCustom":true}
 
 	column player_type
 		dataType: string
@@ -257,6 +257,8 @@ table dim_player
 			)
 		lineageTag: 74d1984e-2a9a-4049-8753-049d77ef3ab1
 		summarizeBy: none
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
