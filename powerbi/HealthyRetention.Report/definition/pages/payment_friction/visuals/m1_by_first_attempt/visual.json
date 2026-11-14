@@ -28,25 +28,8 @@
               },
               "queryRef": "dim_player.first_funding_attempt_status",
               "nativeQueryRef": "first_funding_attempt_status",
+              "active": true,
               "displayName": "First funding attempt"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Retention M1"
-                }
-              },
-              "queryRef": "_Measures.Retention M1",
-              "nativeQueryRef": "Retention M1"
             }
           ]
         },
@@ -67,10 +50,27 @@
               "nativeQueryRef": "Players"
             }
           ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Retention M1"
+                }
+              },
+              "queryRef": "_Measures.Retention M1",
+              "nativeQueryRef": "Retention M1"
+            }
+          ]
         }
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "categoryAxis": [
         {
@@ -472,6 +472,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

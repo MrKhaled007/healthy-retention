@@ -28,6 +28,7 @@
               },
               "queryRef": "dim_player.deposit_segment",
               "nativeQueryRef": "deposit_segment",
+              "active": true,
               "displayName": "Segment"
             }
           ]

@@ -57,7 +57,7 @@ table _Measures
 	measure Players =
 			
 			COUNTROWS ( dim_player )
-		formatString: 0
+		formatString: #,0
 		lineageTag: 8c831ed3-7897-49a3-b14f-791aac8abcd2
 
 	measure '% of Players' =
@@ -218,19 +218,19 @@ table _Measures
 	measure 'Group Active M1' =
 			
 			CALCULATE ( [Group Players], dim_player[active_m1] = TRUE () )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0
 		lineageTag: 3919e65d-9989-4b71-88e5-d8fad3d8b4e1
 
 	measure 'Group Active M2' =
 			
 			CALCULATE ( [Group Players], dim_player[active_m2] = TRUE () )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0
 		lineageTag: da5b1b87-f753-47df-8ca9-4726205775b4
 
 	measure 'Group Active M3' =
 			
 			CALCULATE ( [Group Players], dim_player[active_m3] = TRUE () )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0
 		lineageTag: 3db530a6-6a8e-4aff-9301-6d0fca9d5aea
 
 	measure 'Group Retention M1' =
@@ -277,9 +277,10 @@ table _Measures
 			    )
 			RETURN
 			    CALCULATE ( [M3 Deposit Amount], KEEPFILTERS ( GroupPlayers ) )
+		formatString: 0
 		lineageTag: be9ef110-a088-46d3-b01c-dd45851f2455
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Group % of M3 Money' =
 			
@@ -341,10 +342,10 @@ table _Measures
 	measure 'Segment Chart Title' =
 			
 			SWITCH (
-			    SELECTEDVALUE ( 'Segment Measure'[Segment Measure] ),
-			    "Share of players", "Share of depositors by segment",
-			    "Share of money", "Share of deposit money by segment",
-			    "Median $/month", "Typical monthly deposit by segment",
+			    SELECTEDVALUE ( 'Segment Measure'[Segment Measure Order] ),
+			    0, "Share of depositors by segment",
+			    1, "Share of deposit money by segment",
+			    2, "Typical monthly deposit by segment",
 			    "Share of deposit money by segment"
 			)
 		lineageTag: 3c4d5dec-2336-4081-bcfe-68fd4fef682d

@@ -28,6 +28,7 @@
               },
               "queryRef": "dim_player.cohort_month",
               "nativeQueryRef": "cohort_month",
+              "active": true,
               "displayName": "Cohort"
             }
           ]

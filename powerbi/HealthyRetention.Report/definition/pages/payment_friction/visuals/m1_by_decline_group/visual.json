@@ -28,25 +28,8 @@
               },
               "queryRef": "dim_player.Decline Group",
               "nativeQueryRef": "Decline Group",
+              "active": true,
               "displayName": "Declines in first 30 days"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Retention M1"
-                }
-              },
-              "queryRef": "_Measures.Retention M1",
-              "nativeQueryRef": "Retention M1"
             }
           ]
         },
@@ -65,6 +48,24 @@
               },
               "queryRef": "_Measures.Players",
               "nativeQueryRef": "Players"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Retention M1"
+                }
+              },
+              "queryRef": "_Measures.Retention M1",
+              "nativeQueryRef": "Retention M1"
             }
           ]
         }
@@ -87,7 +88,6 @@
         ]
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "categoryAxis": [
         {
@@ -591,7 +591,8 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [

@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "HI Threshold.HI Threshold",
-              "nativeQueryRef": "HI Threshold"
+              "nativeQueryRef": "HI Threshold",
+              "active": true
             }
           ]
         }
@@ -37,6 +38,13 @@
       "data": [
         {
           "properties": {
+            "numericStart": {
+              "expr": {
+                "Literal": {
+                  "Value": "2000D"
+                }
+              }
+            },
             "mode": {
               "expr": {
                 "Literal": {
@@ -142,7 +150,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "1038L"
+                            "Value": "2000D"
                           }
                         }
                       }

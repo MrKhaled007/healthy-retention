@@ -28,6 +28,7 @@
               },
               "queryRef": "fct_player_month.months_since_first_seen",
               "nativeQueryRef": "months_since_first_seen",
+              "active": true,
               "displayName": "Month"
             }
           ]
@@ -69,7 +70,6 @@
         ]
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "categoryAxis": [
         {
@@ -366,7 +366,8 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
